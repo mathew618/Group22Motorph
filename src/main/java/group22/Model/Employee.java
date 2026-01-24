@@ -4,10 +4,6 @@
  */
 package group22.Model;
 
-/**
- *
- * @author mathe
- */
 public class Employee {
     private String empNumber;
     private String lastName;

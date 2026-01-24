@@ -50,6 +50,6 @@ public class MotorPH {
         Temp.duplicateCSV(CSV_NAME, TEMP_CSV_NAME);
         Data.loadEmployees(TEMP_CSV_NAME);
         
-        
+        new Login().setVisible(true);
     }
 }
