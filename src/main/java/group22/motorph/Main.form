@@ -334,7 +334,14 @@
                 <Component class="group22.Tabs.Employees" name="employees1">
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-                      <CardConstraints cardName="card2"/>
+                      <CardConstraints cardName="employees"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="group22.Tabs.Settings" name="settings1">
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                      <CardConstraints cardName="settings"/>
                     </Constraint>
                   </Constraints>
                 </Component>

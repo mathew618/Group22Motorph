@@ -29,7 +29,7 @@ public class Data {
 
     public static void loadEmployees(String filePath) {
 
-        employees = EmpCSVReader.read(filePath);
+        employees = EmpCSV.read(filePath);
 
         empModel.setRowCount(0);
         salaryModel.setRowCount(0);
@@ -55,7 +55,7 @@ public class Data {
             });
         }
     }
-
+    
     public static List<Employee> getEmployees() {
         return employees;
     }

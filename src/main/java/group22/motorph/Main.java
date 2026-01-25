@@ -52,6 +52,7 @@ public class Main extends javax.swing.JFrame {
         Scroll = new javax.swing.JScrollPane();
         Tabs = new javax.swing.JPanel();
         employees1 = new group22.Tabs.Employees();
+        settings1 = new group22.Tabs.Settings();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -193,7 +194,8 @@ public class Main extends javax.swing.JFrame {
         Scroll.setColumnHeaderView(null);
 
         Tabs.setLayout(new java.awt.CardLayout());
-        Tabs.add(employees1, "card2");
+        Tabs.add(employees1, "employees");
+        Tabs.add(settings1, "settings");
 
         Scroll.setViewportView(Tabs);
 
@@ -264,12 +266,12 @@ public class Main extends javax.swing.JFrame {
 
     private void empBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empBtnActionPerformed
         // TODO add your handling code here:
-        greg.show(Tabs, "f1");
+        greg.show(Tabs, "employees");
     }//GEN-LAST:event_empBtnActionPerformed
 
     private void settingsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_settingsBtnActionPerformed
         // TODO add your handling code here:
-        greg.show(Tabs, "f6");
+        greg.show(Tabs, "settings");
     }//GEN-LAST:event_settingsBtnActionPerformed
 
     /**
@@ -315,6 +317,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton paidBtn;
     private javax.swing.JButton payBtn;
     private javax.swing.JButton salBtn;
+    private group22.Tabs.Settings settings1;
     private javax.swing.JButton settingsBtn;
     // End of variables declaration//GEN-END:variables
 }
