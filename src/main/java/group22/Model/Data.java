@@ -24,10 +24,12 @@ public class Data {
     private static final DefaultTableModel salaryModel = new DefaultTableModel(
             new Object[]{"Employee Number", "Last Name", "First Name", "Basic Salary", "Gross Semi-monthly Rate", "Hourly Rate"}, 0
     );
+    
+    private static List<Employee> employees;
 
     public static void loadEmployees(String filePath) {
 
-        List<Employee> employees = EmpCSVReader.read(filePath);
+        employees = EmpCSVReader.read(filePath);
 
         empModel.setRowCount(0);
         salaryModel.setRowCount(0);
@@ -54,6 +56,10 @@ public class Data {
         }
     }
 
+    public static List<Employee> getEmployees() {
+        return employees;
+    }
+    
     public static DefaultTableModel getPayslipModel() {
         return payslipModel;
     }

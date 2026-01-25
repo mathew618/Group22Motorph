@@ -5,6 +5,8 @@
 package group22.Tabs;
 
 import group22.Model.Data;
+import group22.Model.Employee;
+import group22.Model.EmployeeDetails;
 import javax.swing.JOptionPane;
 
 /**
@@ -149,8 +151,13 @@ public class Employees extends javax.swing.JPanel {
             return;
         }
         
+        int modelRow = empTableL.convertRowIndexToModel(selectedRow);
         
+        Employee emp = Data.getEmployees().get(modelRow);
         
+        EmployeeDetails detailsFrame = new EmployeeDetails(emp);
+        detailsFrame.setVisible(true);
+         
     }//GEN-LAST:event_viewEmpActionPerformed
 
     private void addEmpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addEmpBtnActionPerformed
