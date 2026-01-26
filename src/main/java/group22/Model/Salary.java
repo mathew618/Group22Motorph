@@ -4,196 +4,105 @@
  */
 package group22.Model;
 
-public abstract class Salary {
+public abstract class Salary implements SalaryOperations {
+    //rates
     private double regularHoursWorked;
     private double regularRate;
     private double regularAmount;
-    
     //overtime
     private double overtimeHoursWorked;
     private double overtimeRate;
     private double overtimeAmount;
-    
-    //bonus
+    //hours worked
     private double bonusHoursWorked;
     private double bonusRate;
     private double bonusAmount;
-    
-    //deductions
+    //gov deductions
     private double withholdingTax;
     private double sssDeduction;
     private double philHealthDeduction;
     private double pagIbigDeduction;
-    
     //totals
     private double totalEarnings;
     private double totalDeductions;
     private double netPay;
-    
-    //constructors
-    public Salary(){
-    }
 
-    //getters
-    public double getRegularHoursWorked() {
-        return regularHoursWorked;
-    }
+    // Constructor
+    public Salary() {}
 
-    public void setRegularHoursWorked(double regularHoursWorked) {
-        this.regularHoursWorked = regularHoursWorked;
-        calculateRegularAmount();
-        calculateTotals();
-    }
+    // Getters and setters 
+    public double getRegularHoursWorked(){ return regularHoursWorked; }
+    public void setRegularHoursWorked(double regularHoursWorked){ this.regularHoursWorked = regularHoursWorked; }
 
-    public double getRegularRate() {
-        return regularRate;
-    }
+    public double getRegularRate(){ return regularRate; }
+    public void setRegularRate(double regularRate){ this.regularRate = regularRate; }
 
-    public void setRegularRate(double regularRate) {
-        this.regularRate = regularRate;
-        calculateRegularAmount();
-        calculateTotals();
-    }
+    public double getOvertimeHoursWorked(){ return overtimeHoursWorked; }
+    public void setOvertimeHoursWorked(double overtimeHoursWorked){ this.overtimeHoursWorked = overtimeHoursWorked; }
 
-    public double getRegularAmount() {
-        return regularAmount;
-    }
+    public double getOvertimeRate(){ return overtimeRate; }
+    public void setOvertimeRate(double overtimeRate){ this.overtimeRate = overtimeRate; }
 
-    public void setRegularAmount(double regularAmount) {
-        this.regularAmount = regularAmount;
-    }
+    public double getBonusHoursWorked(){ return bonusHoursWorked; }
+    public void setBonusHoursWorked(double bonusHoursWorked){ this.bonusHoursWorked = bonusHoursWorked; }
 
-    public double getOvertimeHoursWorked() {
-        return overtimeHoursWorked;
-    }
+    public double getBonusRate(){ return bonusRate; }
+    public void setBonusRate(double bonusRate){ this.bonusRate = bonusRate; }
 
-    public void setOvertimeHoursWorked(double overtimeHoursWorked) {
-        this.overtimeHoursWorked = overtimeHoursWorked;
-        calculateBonusAmount();
-        calculateTotals();
-    }
+    public double getWithholdingTax(){ return withholdingTax; }
+    public void setWithholdingTax(double withholdingTax){ this.withholdingTax = withholdingTax; }
 
-    public double getOvertimeRate() {
-        return overtimeRate;
-    }
+    public double getSssDeduction(){ return sssDeduction; }
+    public void setSssDeduction(double sssDeduction){ this.sssDeduction = sssDeduction; }
 
-    public void setOvertimeRate(double overtimeRate) {
-        this.overtimeRate = overtimeRate;
-        calculateOvertimeAmount();
-        calculateTotals();
-    }
+    public double getPhilHealthDeduction(){ return philHealthDeduction; }
+    public void setPhilHealthDeduction(double philHealthDeduction){ this.philHealthDeduction = philHealthDeduction; }
 
-    public double getOvertimeAmount() {
-        return overtimeAmount;
-    }
+    public double getPagIbigDeduction(){ return pagIbigDeduction; }
+    public void setPagIbigDeduction(double pagIbigDeduction) { this.pagIbigDeduction = pagIbigDeduction; }
 
-    public void setOvertimeAmount(double overtimeAmount) {
-        this.overtimeAmount = overtimeAmount;
-        calculateOvertimeAmount();
-        calculateTotals();
-    }
+    // Getters for computations
+    @Override
+    public double getRegularAmount(){ return regularAmount; }
+    protected void setRegularAmount(double regularAmount){ this.regularAmount = regularAmount; }
 
-    public double getBonusHoursWorked() {
-        return bonusHoursWorked;
-    }
+    @Override
+    public double getOvertimeAmount(){ return overtimeAmount; }
+    protected void setOvertimeAmount(double overtimeAmount){ this.overtimeAmount = overtimeAmount; }
 
-    public void setBonusHoursWorked(double bonusHoursWorked) {
-        this.bonusHoursWorked = bonusHoursWorked;
-        calculateBonusAmount();
-        calculateTotals();
-    }
+    @Override
+    public double getBonusAmount(){ return bonusAmount; }
+    protected void setBonusAmount(double bonusAmount){ this.bonusAmount = bonusAmount; }
 
-    public double getBonusRate() {
-        return bonusRate;
-    }
+    @Override
+    public double getTotalEarnings(){ return totalEarnings; }
+    protected void setTotalEarnings(double totalEarnings){ this.totalEarnings = totalEarnings; }
 
-    public void setBonusRate(double bonusRate) {
-        this.bonusRate = bonusRate;
-        calculateBonusAmount();
-        calculateTotals();
-    }
+    @Override
+    public double getTotalDeductions(){ return totalDeductions; }
+    protected void setTotalDeductions(double totalDeductions){ this.totalDeductions = totalDeductions; }
 
-    public double getBonusAmount() {
-        return bonusAmount;
-    }
+    @Override
+    public double getNetPay(){ return netPay; }
+    protected void setNetPay(double netPay){ this.netPay = netPay; }
 
-    public void setBonusAmount(double bonusAmount) {
-        this.bonusAmount = bonusAmount;
-    }
+    // Abstract calculation methods
+    @Override
+    public abstract double calculateRegularAmount();
 
-    public double getWithholdingTax() {
-        return withholdingTax;
-    }
+    @Override
+    public abstract double calculateOvertimeAmount();
 
-    public void setWithholdingTax(double withholdingTax) {
-        this.withholdingTax = withholdingTax;
-        calculateTotals();
-    }
+    @Override
+    public abstract double calculateBonusAmount();
 
-    public double getSssDeduction() {
-        return sssDeduction;
-    }
+    @Override
+    public abstract double calculateTotalEarnings();
 
-    public void setSssDeduction(double sssDeduction) {
-        this.sssDeduction = sssDeduction;
-        calculateTotals();
-    }
+    @Override
+    public abstract double calculateTotalDeductions();
 
-    public double getPhilHealthDeduction() {
-        return philHealthDeduction;
-    }
-
-    public void setPhilHealthDeduction(double philHealthDeduction) {
-        this.philHealthDeduction = philHealthDeduction;
-        calculateTotals();
-    }
-
-    public double getPagIbigDeduction(){
-        return pagIbigDeduction;
-    }
-    
-    public void setPagIbigDeduction(double pagIbigDeduction){
-        this.pagIbigDeduction = pagIbigDeduction;
-        calculateTotals();
-    }
-    
-    public double getTotalEarnings() {
-        return totalEarnings;
-    }
-
-    public void setTotalEarnings(double totalEarnings) {
-        this.totalEarnings = totalEarnings;
-    }
-
-    public double getTotalDeductions() {
-        return totalDeductions;
-    }
-
-    public void setTotalDeductions(double totalDeductions) {
-        this.totalDeductions = totalDeductions;
-    }
-
-    public void setNetPay(double netpay) {
-        this.netPay = netpay;
-    }
-    
-    //calculations
-    private void calculateRegularAmount(){
-        this.regularAmount = this.regularHoursWorked * this.regularRate;
-    }
-    private void calculateOvertimeAmount(){
-        this.overtimeAmount = this.overtimeHoursWorked * this.overtimeRate;
-    }
-    private void calculateBonusAmount(){
-        this.bonusAmount = this.bonusHoursWorked * this.bonusRate;
-    }
-    private void calculateTotals(){
-        this.totalEarnings = regularAmount + overtimeAmount + bonusAmount;
-        this.totalDeductions = withholdingTax + sssDeduction + philHealthDeduction + pagIbigDeduction;
-        this.netPay = totalEarnings - totalDeductions;
-    }
-    
-    public abstract double getNetPay();
+    @Override
+    public abstract double calculateNetPay();
         
 }
-
