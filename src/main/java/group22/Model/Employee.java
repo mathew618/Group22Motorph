@@ -4,22 +4,22 @@
  */
 package group22.Model;
 
-public class Employee {
-    private String empNumber;
-    private String lastName;
-    private String firstName;
-    private String birthdate;
-    private String address;
-    private String phone;
-    private String status;
-    private String position;
-    private String sss;
-    private String tin;
-    private String philHealth;
-    private String pagIbig;
-    private String basicSalary;
-    private String grossSemiMonthly;
-    private String hourlyRate;
+public abstract class Employee {
+    protected String empNumber;
+    protected String lastName;
+    protected String firstName;
+    protected String birthdate;
+    protected String address;
+    protected String phone;
+    protected String status;
+    protected String position;
+    protected String sss;
+    protected String tin;
+    protected String philHealth;
+    protected String pagIbig;
+    protected String basicSalary;
+    protected String grossSemiMonthly;
+    protected String hourlyRate;
 
     public Employee(String empNumber, String lastName, String firstName, String birthdate, String address, String phone, String status, String position, String sss, String tin, String philHealth, String pagIbig, String basicSalary, String grossSemiMonthly, String hourlyRate) {
         this.empNumber = empNumber;
@@ -39,6 +39,7 @@ public class Employee {
         this.hourlyRate = hourlyRate;
     }
     
+    public abstract double calculateSalary();
     
     //getters
     public String getEmpNumber(){

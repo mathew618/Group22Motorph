@@ -29,7 +29,8 @@ public class EmpCSV {
             while ((line = br.readLine()) != null) {
                 String[] d = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
 
-                Employee emp = new Employee(
+                Employee emp;
+                emp = new Employee(
                         d[0], // empNumber
                         d[1], // lastName
                         d[2], // firstName
@@ -45,7 +46,12 @@ public class EmpCSV {
                         d[13], // basicSalary
                         d[17], // grossSemiMonthly
                         d[18] // hourlyRate
-                );
+                ) {
+                    @Override
+                    public double calculateSalary() {
+                        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+                    }
+                };
 
                 employees.add(emp);
             }
