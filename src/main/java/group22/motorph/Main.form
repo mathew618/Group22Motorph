@@ -345,6 +345,34 @@
                     </Constraint>
                   </Constraints>
                 </Component>
+                <Component class="group22.Tabs.Attendance" name="attendance1">
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                      <CardConstraints cardName="attendance"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="group22.Tabs.Salary" name="salary1">
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                      <CardConstraints cardName="salary"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="group22.Tabs.Payslips" name="payslips1">
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                      <CardConstraints cardName="payslip"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="group22.Tabs.Paid" name="paid1">
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                      <CardConstraints cardName="paid"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
               </SubComponents>
             </Container>
           </SubComponents>

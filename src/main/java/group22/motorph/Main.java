@@ -53,6 +53,10 @@ public class Main extends javax.swing.JFrame {
         Tabs = new javax.swing.JPanel();
         employees1 = new group22.Tabs.Employees();
         settings1 = new group22.Tabs.Settings();
+        attendance1 = new group22.Tabs.Attendance();
+        salary1 = new group22.Tabs.Salary();
+        payslips1 = new group22.Tabs.Payslips();
+        paid1 = new group22.Tabs.Paid();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -196,6 +200,10 @@ public class Main extends javax.swing.JFrame {
         Tabs.setLayout(new java.awt.CardLayout());
         Tabs.add(employees1, "employees");
         Tabs.add(settings1, "settings");
+        Tabs.add(attendance1, "attendance");
+        Tabs.add(salary1, "salary");
+        Tabs.add(payslips1, "payslip");
+        Tabs.add(paid1, "paid");
 
         Scroll.setViewportView(Tabs);
 
@@ -246,22 +254,22 @@ public class Main extends javax.swing.JFrame {
 
     private void paidBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paidBtnActionPerformed
         // TODO add your handling code here:
-        greg.show(Tabs, "f5");
+        greg.show(Tabs, "paid");
     }//GEN-LAST:event_paidBtnActionPerformed
 
     private void payBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payBtnActionPerformed
         // TODO add your handling code here:
-        greg.show(Tabs, "f4");
+        greg.show(Tabs, "payslip");
     }//GEN-LAST:event_payBtnActionPerformed
 
     private void salBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salBtnActionPerformed
         // TODO add your handling code here:
-        greg.show(Tabs, "f3");
+        greg.show(Tabs, "salary");
     }//GEN-LAST:event_salBtnActionPerformed
 
     private void catBTnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_catBTnActionPerformed
         // TODO add your handling code here:
-        greg.show(Tabs, "f2");
+        greg.show(Tabs, "attendance");
     }//GEN-LAST:event_catBTnActionPerformed
 
     private void empBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empBtnActionPerformed
@@ -302,6 +310,7 @@ public class Main extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane Scroll;
     private javax.swing.JPanel Tabs;
+    private group22.Tabs.Attendance attendance1;
     private javax.swing.JButton catBTn;
     private javax.swing.JButton empBtn;
     private group22.Tabs.Employees employees1;
@@ -314,9 +323,12 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private group22.Tabs.Paid paid1;
     private javax.swing.JButton paidBtn;
     private javax.swing.JButton payBtn;
+    private group22.Tabs.Payslips payslips1;
     private javax.swing.JButton salBtn;
+    private group22.Tabs.Salary salary1;
     private group22.Tabs.Settings settings1;
     private javax.swing.JButton settingsBtn;
     // End of variables declaration//GEN-END:variables
