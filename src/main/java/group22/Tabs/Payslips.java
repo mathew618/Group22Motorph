@@ -4,6 +4,11 @@
  */
 package group22.Tabs;
 
+import group22.Model.EmpSalary;
+import java.text.DecimalFormat;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+
 /**
  *
  * @author mathe
@@ -13,10 +18,70 @@ public class Payslips extends javax.swing.JPanel {
     /**
      * Creates new form Payslips
      */
+    private EmpSalary currentSalary;
+    
     public Payslips() {
         initComponents();
-        
         PsScroll.getVerticalScrollBar().setUnitIncrement(16);
+        
+        currentSalary = new EmpSalary();
+        
+        updateSalaryFromFields();
+        
+        addListeners();
+    }
+    
+    private void addListeners() {
+        DocumentListener docListener = new DocumentListener() {
+            @Override public void insertUpdate(DocumentEvent e) { updateSalaryFromFields(); }
+            @Override public void removeUpdate(DocumentEvent e) { updateSalaryFromFields(); }
+            @Override public void changedUpdate(DocumentEvent e) { updateSalaryFromFields(); }
+        };
+
+            rHwp.getDocument().addDocumentListener(docListener);
+            rRate.getDocument().addDocumentListener(docListener);
+            oHwp.getDocument().addDocumentListener(docListener);
+            oRate.getDocument().addDocumentListener(docListener);
+            bHwp.getDocument().addDocumentListener(docListener);
+            bRate.getDocument().addDocumentListener(docListener);
+
+            dTax.getDocument().addDocumentListener(docListener);
+            dSssc.getDocument().addDocumentListener(docListener);
+            dPhc.getDocument().addDocumentListener(docListener);
+    }
+    
+    private void updateSalaryFromFields() {
+        try {
+            currentSalary.setRegularHoursWorked(Double.parseDouble(rHwp.getText()));
+            currentSalary.setRegularRate(Double.parseDouble(rRate.getText()));
+
+            currentSalary.setOvertimeHoursWorked(Double.parseDouble(oHwp.getText()));
+            currentSalary.setOvertimeRate(Double.parseDouble(oRate.getText()));
+
+            currentSalary.setBonusHoursWorked(Double.parseDouble(bHwp.getText()));
+            currentSalary.setBonusRate(Double.parseDouble(bRate.getText()));
+
+            currentSalary.setWithholdingTax(Double.parseDouble(dTax.getText()));
+            currentSalary.setSssDeduction(Double.parseDouble(dSssc.getText()));
+            currentSalary.setPhilHealthDeduction(Double.parseDouble(dPhc.getText()));
+
+            DecimalFormat df = new DecimalFormat("#.##");
+                rAmount.setText(df.format(currentSalary.getRegularAmount()));
+                oAmount.setText(df.format(currentSalary.getOvertimeAmount()));
+                bAmount.setText(df.format(currentSalary.getBonusAmount()));
+
+                rTotal.setText(df.format(currentSalary.getTotalEarnings()));
+                dTotal.setText(df.format(currentSalary.getTotalDeductions()));
+                Net.setText(df.format(currentSalary.getNetPay()));
+
+        } catch (NumberFormatException e) {
+            rAmount.setText("0");
+            oAmount.setText("0");
+            bAmount.setText("0");
+            rTotal.setText("0");
+            dTotal.setText("0");
+            Net.setText("0");
+        }
     }
 
     /**
@@ -499,8 +564,8 @@ public class Payslips extends javax.swing.JPanel {
                 .addComponent(wats, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(searchF, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 609, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -720,16 +785,16 @@ public class Payslips extends javax.swing.JPanel {
         gradientPanel1.setLayout(gradientPanel1Layout);
         gradientPanel1Layout.setHorizontalGroup(
             gradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(gradientPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(gradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(gradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(gradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(6, 6, 6))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         gradientPanel1Layout.setVerticalGroup(
             gradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

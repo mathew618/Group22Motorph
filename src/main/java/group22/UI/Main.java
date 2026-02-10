@@ -30,14 +30,19 @@ public class Main extends javax.swing.JFrame {
         
         //btnName, tabName 
         nav.addLabel("MENU");
-        nav.addButton("EMPLOYEES", "employees");
-        nav.addButton("ATTENDANCE", "attendance");
-        nav.addButton("SALARY", "salary");
+        nav.addBtn("EMPLOYEES", "employees");
+        nav.addBtn("ATTENDANCE", "attendance");
+        nav.addBtn("SALARY", "salary");
         
         nav.addLabel("OTHERS");
-        nav.addButton("PAYSLIPS", "payslip");
-        nav.addButton("PAID", "paid");
-        nav.addButton("SETTINGS", "settings");
+        nav.addBtn("PAYSLIPS", "payslip");
+        nav.addBtn("PAID", "paid");
+        nav.addBtn("SETTINGS", "settings");
+        
+        nav.addLogout(() -> {
+            new Login().setVisible(true);
+            dispose();
+        });
     }
 
     /**
@@ -74,6 +79,7 @@ public class Main extends javax.swing.JFrame {
         paid1 = new group22.Tabs.Paid();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(810, 460));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 204));
         jPanel1.setPreferredSize(new java.awt.Dimension(768, 420));

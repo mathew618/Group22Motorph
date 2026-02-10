@@ -8,6 +8,7 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -33,26 +34,46 @@ public class NavSidebar extends JPanel {
         panelName.setLayout(new BoxLayout(panelName, BoxLayout.Y_AXIS));
     }
 
-    public void addButton(String text, String cardName) {
+    private JButton createBtn(String text) {
         JButton button = new JButton(text);
-        
+
         button.setFocusPainted(false);
         button.setBorderPainted(false);
         button.setOpaque(true);
 
         button.setBorder(BorderFactory.createEmptyBorder(8, 12, 8, 12));
-        button.setBackground(DEFAULT_BG);
-        
+
         button.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
         button.setPreferredSize(new Dimension(145, 40));
-        
-        
+
+        return button;
+    }
+
+    public void addBtn(String text, String cardName) {
+        JButton button = createBtn(text);
+
+        button.setBackground(DEFAULT_BG);
+
         button.addActionListener(e -> {
             setActive(button);
             cardLayout.show(tabName, cardName);
         });
 
         panel.add(button);
+    }
+
+    public void addLogout(Runnable logOut) {
+        panel.add(Box.createVerticalGlue());
+        JButton button = createBtn("LOG OUT");
+
+        button.setBackground(new Color(0, 51, 153));
+        button.setForeground(new Color(255, 255, 255));
+
+        button.addActionListener(e -> logOut.run());
+
+        panel.add(button);
+        
+        panel.add(Box.createVerticalStrut(30));
     }
 
     public void addLabel(String text) {
