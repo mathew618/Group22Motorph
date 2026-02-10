@@ -87,7 +87,7 @@ public class Attendance extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        gradientPanel1 = new group22.motorph.GradientPanel();
+        gradientPanel1 = new group22.UI.GradientPanel();
         jLabel4 = new javax.swing.JLabel();
         empNameA = new javax.swing.JTextField();
         logIN = new javax.swing.JButton();
@@ -308,7 +308,7 @@ public class Attendance extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> MonthPicker;
     private javax.swing.JTextField empNameA;
     private javax.swing.JTextField empNumA;
-    private group22.motorph.GradientPanel gradientPanel1;
+    private group22.UI.GradientPanel gradientPanel1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;

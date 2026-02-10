@@ -32,7 +32,7 @@ public class Settings extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        gradientPanel1 = new group22.motorph.GradientPanel();
+        gradientPanel1 = new group22.UI.GradientPanel();
         jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
@@ -93,7 +93,7 @@ public class Settings extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private group22.motorph.GradientPanel gradientPanel1;
+    private group22.UI.GradientPanel gradientPanel1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel5;
     // End of variables declaration//GEN-END:variables

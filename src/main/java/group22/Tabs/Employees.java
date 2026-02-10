@@ -4,10 +4,10 @@
  */
 package group22.Tabs;
 
+import group22.UI.EmployeeDetails;
 import group22.Model.Data;
 import group22.Model.EmpCSV;
 import group22.Model.Employee;
-import group22.Model.EmployeeDetails;
 import static group22.motorph.MotorPH.TEMP_CSV_NAME;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
@@ -71,7 +71,7 @@ public class Employees extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        gradientPanel1 = new group22.motorph.GradientPanel();
+        gradientPanel1 = new group22.UI.GradientPanel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         empTableL = new javax.swing.JTable();
@@ -242,7 +242,7 @@ public class Employees extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addEmpBtn;
     private javax.swing.JTable empTableL;
-    private group22.motorph.GradientPanel gradientPanel1;
+    private group22.UI.GradientPanel gradientPanel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton removeEmpBtn;

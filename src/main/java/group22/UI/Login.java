@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package group22.motorph;
+package group22.UI;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -53,7 +53,7 @@ public class Login extends javax.swing.JFrame {
         jMain = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        gradientPanel1 = new group22.motorph.GradientPanel();
+        gradientPanel1 = new group22.UI.GradientPanel();
         jPanel2 = new javax.swing.JPanel();
         LButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -278,7 +278,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton LButton;
     private javax.swing.JTextField LName;
     private javax.swing.JPasswordField LPassword;
-    private group22.motorph.GradientPanel gradientPanel1;
+    private group22.UI.GradientPanel gradientPanel1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

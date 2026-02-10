@@ -102,7 +102,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="group22.motorph.GradientPanel" name="gradientPanel1">
+        <Container class="group22.UI.GradientPanel" name="gradientPanel1">
           <Properties>
             <Property name="color1" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="e6" green="e6" red="8c" type="rgb"/>

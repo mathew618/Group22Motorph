@@ -29,7 +29,7 @@ public class Payslips extends javax.swing.JPanel {
     private void initComponents() {
 
         PsScroll = new javax.swing.JScrollPane();
-        gradientPanel1 = new group22.motorph.GradientPanel();
+        gradientPanel1 = new group22.UI.GradientPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -877,7 +877,7 @@ public class Payslips extends javax.swing.JPanel {
     private javax.swing.JTextField dSssc;
     private javax.swing.JTextField dTax;
     private javax.swing.JTextField dTotal;
-    private group22.motorph.GradientPanel gradientPanel1;
+    private group22.UI.GradientPanel gradientPanel1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

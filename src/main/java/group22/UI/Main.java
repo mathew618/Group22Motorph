@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package group22.motorph;
+package group22.UI;
 
 import java.awt.CardLayout;
 
@@ -23,6 +23,21 @@ public class Main extends javax.swing.JFrame {
         greg = (CardLayout)(Tabs.getLayout());
         
         Scroll.getVerticalScrollBar().setUnitIncrement(16);
+        
+        jPanel3.removeAll();
+        
+        NavSidebar nav = new NavSidebar(jPanel3, greg, Tabs);
+        
+        //btnName, tabName 
+        nav.addLabel("MENU");
+        nav.addButton("EMPLOYEES", "employees");
+        nav.addButton("ATTENDANCE", "attendance");
+        nav.addButton("SALARY", "salary");
+        
+        nav.addLabel("OTHERS");
+        nav.addButton("PAYSLIPS", "payslip");
+        nav.addButton("PAID", "paid");
+        nav.addButton("SETTINGS", "settings");
     }
 
     /**
@@ -254,32 +269,26 @@ public class Main extends javax.swing.JFrame {
 
     private void paidBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paidBtnActionPerformed
         // TODO add your handling code here:
-        greg.show(Tabs, "paid");
     }//GEN-LAST:event_paidBtnActionPerformed
 
     private void payBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payBtnActionPerformed
         // TODO add your handling code here:
-        greg.show(Tabs, "payslip");
     }//GEN-LAST:event_payBtnActionPerformed
 
     private void salBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salBtnActionPerformed
         // TODO add your handling code here:
-        greg.show(Tabs, "salary");
     }//GEN-LAST:event_salBtnActionPerformed
 
     private void catBTnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_catBTnActionPerformed
         // TODO add your handling code here:
-        greg.show(Tabs, "attendance");
     }//GEN-LAST:event_catBTnActionPerformed
 
     private void empBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empBtnActionPerformed
         // TODO add your handling code here:
-        greg.show(Tabs, "employees");
     }//GEN-LAST:event_empBtnActionPerformed
 
     private void settingsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_settingsBtnActionPerformed
         // TODO add your handling code here:
-        greg.show(Tabs, "settings");
     }//GEN-LAST:event_settingsBtnActionPerformed
 
     /**
