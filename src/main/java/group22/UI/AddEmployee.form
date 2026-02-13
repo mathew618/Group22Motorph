@@ -318,21 +318,33 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="sss">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="0123456789"/>
+                  </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sssActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="tin">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="123456789"/>
+                  </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tinActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="philhealth">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="012345678910"/>
+                  </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="philhealthActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="pagibig">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="012345678910"/>
+                  </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pagibigActionPerformed"/>
                   </Events>
@@ -426,12 +438,16 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="empN">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="00000"/>
+                  </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="empNActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="lname">
                   <Properties>
+                    <Property name="text" type="java.lang.String" value="Last"/>
                     <Property name="toolTipText" type="java.lang.String" value=""/>
                   </Properties>
                   <Events>
@@ -439,22 +455,32 @@
                   </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="fname">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="First"/>
+                  </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fnameActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="birthdate">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="1/1/1000"/>
+                  </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="birthdateActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="address">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Address"/>
+                  </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addressActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="phone">
                   <Properties>
+                    <Property name="text" type="java.lang.String" value="12345678910"/>
                     <Property name="toolTipText" type="java.lang.String" value=""/>
                   </Properties>
                   <Events>
@@ -463,6 +489,7 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="status">
                   <Properties>
+                    <Property name="text" type="java.lang.String" value="Regular"/>
                     <Property name="toolTipText" type="java.lang.String" value=""/>
                   </Properties>
                   <Events>
@@ -470,6 +497,9 @@
                   </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="position">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Employee"/>
+                  </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="positionActionPerformed"/>
                   </Events>
@@ -483,11 +513,17 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="supervisor">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="N/A"/>
+                  </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="supervisorActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="basicSalary">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="50000"/>
+                  </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="basicSalaryActionPerformed"/>
                   </Events>
@@ -509,11 +545,17 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="riceSubsidy">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="5000"/>
+                  </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="riceSubsidyActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="phoneAllow">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="5000"/>
+                  </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="phoneAllowActionPerformed"/>
                   </Events>
@@ -529,6 +571,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="clothAllow">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="5000"/>
+                  </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clothAllowActionPerformed"/>
                   </Events>
@@ -539,6 +584,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="grossR">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="5000"/>
+                  </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="grossRActionPerformed"/>
                   </Events>
@@ -549,6 +597,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="hourlyR">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="200"/>
+                  </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="hourlyRActionPerformed"/>
                   </Events>
@@ -559,11 +610,17 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="sssDed">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="100"/>
+                  </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sssDedActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="philDed">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="100"/>
+                  </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="philDedActionPerformed"/>
                   </Events>
@@ -579,6 +636,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="pagibigDed">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="100"/>
+                  </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pagibigDedActionPerformed"/>
                   </Events>
@@ -589,6 +649,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="taxDed">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="100"/>
+                  </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="taxDedActionPerformed"/>
                   </Events>

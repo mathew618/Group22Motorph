@@ -101,12 +101,16 @@ public class AddEmployee extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel9.setText("SSS:");
 
+        sss.setText("0123456789");
         sss.addActionListener(this::sssActionPerformed);
 
+        tin.setText("123456789");
         tin.addActionListener(this::tinActionPerformed);
 
+        philhealth.setText("012345678910");
         philhealth.addActionListener(this::philhealthActionPerformed);
 
+        pagibig.setText("012345678910");
         pagibig.addActionListener(this::pagibigActionPerformed);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -142,30 +146,40 @@ public class AddEmployee extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel8.setText("Position:");
 
+        empN.setText("00000");
         empN.addActionListener(this::empNActionPerformed);
 
+        lname.setText("Last");
         lname.setToolTipText("");
         lname.addActionListener(this::lnameActionPerformed);
 
+        fname.setText("First");
         fname.addActionListener(this::fnameActionPerformed);
 
+        birthdate.setText("1/1/1000");
         birthdate.addActionListener(this::birthdateActionPerformed);
 
+        address.setText("Address");
         address.addActionListener(this::addressActionPerformed);
 
+        phone.setText("12345678910");
         phone.setToolTipText("");
         phone.addActionListener(this::phoneActionPerformed);
 
+        status.setText("Regular");
         status.setToolTipText("");
         status.addActionListener(this::statusActionPerformed);
 
+        position.setText("Employee");
         position.addActionListener(this::positionActionPerformed);
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel13.setText("Immediate Supervisor:");
 
+        supervisor.setText("N/A");
         supervisor.addActionListener(this::supervisorActionPerformed);
 
+        basicSalary.setText("50000");
         basicSalary.addActionListener(this::basicSalaryActionPerformed);
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -174,38 +188,47 @@ public class AddEmployee extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel15.setText("Rice Subsidy:");
 
+        riceSubsidy.setText("5000");
         riceSubsidy.addActionListener(this::riceSubsidyActionPerformed);
 
+        phoneAllow.setText("5000");
         phoneAllow.addActionListener(this::phoneAllowActionPerformed);
 
         jLabel16.setText("Phone Allowance:");
 
         jLabel17.setText("Clothing Allowance:");
 
+        clothAllow.setText("5000");
         clothAllow.addActionListener(this::clothAllowActionPerformed);
 
         jLabel18.setText("Gross Semi-monthly Rate:");
 
+        grossR.setText("5000");
         grossR.addActionListener(this::grossRActionPerformed);
 
         jLabel19.setText("Hourly Rate:");
 
+        hourlyR.setText("200");
         hourlyR.addActionListener(this::hourlyRActionPerformed);
 
         jLabel20.setText("SSS Deductions:");
 
+        sssDed.setText("100");
         sssDed.addActionListener(this::sssDedActionPerformed);
 
+        philDed.setText("100");
         philDed.addActionListener(this::philDedActionPerformed);
 
         jLabel21.setText("Philhealth Deductions:");
 
         jLabel22.setText("Pagibig Deductions:");
 
+        pagibigDed.setText("100");
         pagibigDed.addActionListener(this::pagibigDedActionPerformed);
 
         jLabel23.setText("Tax Deductions:");
 
+        taxDed.setText("100");
         taxDed.addActionListener(this::taxDedActionPerformed);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
