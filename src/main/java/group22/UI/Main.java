@@ -4,6 +4,8 @@
  */
 package group22.UI;
 
+import group22.Services.Session;
+import group22.Services.User;
 import java.awt.CardLayout;
 
 /**
@@ -11,38 +13,58 @@ import java.awt.CardLayout;
  * @author mathe
  */
 public class Main extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Main.class.getName());
 
     /**
      * Creates new form Main
      */
     CardLayout greg;
+
     public Main() {
         initComponents();
-        greg = (CardLayout)(Tabs.getLayout());
-        
+        greg = (CardLayout) (Tabs.getLayout());
+
         Scroll.getVerticalScrollBar().setUnitIncrement(16);
-        
+
         jPanel3.removeAll();
-        
+
         NavSidebar nav = new NavSidebar(jPanel3, greg, Tabs);
-        
-        //btnName, tabName 
-        nav.addLabel("MENU");
-        nav.addBtn("EMPLOYEES", "employees");
-        nav.addBtn("ATTENDANCE", "attendance");
-        nav.addBtn("SALARY", "salary");
-        
-        nav.addLabel("OTHERS");
-        nav.addBtn("PAYSLIPS", "payslip");
-        nav.addBtn("PAID", "paid");
-        nav.addBtn("SETTINGS", "settings");
-        
-        nav.addLogout(() -> {
-            new Login().setVisible(true);
-            dispose();
-        });
+
+        if (Session.isActive()) {
+            User current = Session.getCurrentUser();
+            String username = current.getUsername();
+            String position = current.getPosition();
+
+            fdName.setText(username);
+            fdPos.setText(position);
+
+            //btnName, tabName 
+            if (position.equalsIgnoreCase("Admin") || position.equalsIgnoreCase("Test")) {
+                nav.addLabel("MENU");
+                nav.addBtn("EMPLOYEES", "employees");
+                nav.addBtn("ATTENDANCE", "attendance");
+                nav.addBtn("SALARY", "salary");
+
+                nav.addLabel("OTHERS");
+                nav.addBtn("PAYSLIPS", "payslip");
+                nav.addBtn("PAID", "paid");
+                nav.addBtn("SETTINGS", "settings");
+            } else {
+                nav.addLabel("MENU");
+                nav.addBtn("ATTENDANCE", "attendance");
+
+                nav.addLabel("OTHERS");
+                nav.addBtn("PAID", "paid");
+                nav.addBtn("SETTINGS", "settings");
+            }
+
+            nav.addLogout(() -> {
+                Session.end();
+                new Login().setVisible(true);
+                dispose();
+            });
+        }
     }
 
     /**
@@ -75,8 +97,8 @@ public class Main extends javax.swing.JFrame {
         settings1 = new group22.Tabs.Settings();
         attendance1 = new group22.Tabs.Attendance();
         salary1 = new group22.Tabs.Salary();
-        payslips1 = new group22.Tabs.Payslips();
         paid1 = new group22.Tabs.Paid();
+        payslips1 = new group22.Tabs.Payslips();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(810, 460));
@@ -113,9 +135,9 @@ public class Main extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(fdName, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fdPos, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(fdName, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
+                    .addComponent(fdPos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -223,8 +245,8 @@ public class Main extends javax.swing.JFrame {
         Tabs.add(settings1, "settings");
         Tabs.add(attendance1, "attendance");
         Tabs.add(salary1, "salary");
-        Tabs.add(payslips1, "payslip");
         Tabs.add(paid1, "paid");
+        Tabs.add(payslips1, "payslip");
 
         Scroll.setViewportView(Tabs);
 

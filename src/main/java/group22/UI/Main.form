@@ -91,9 +91,9 @@
                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                       <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="fdName" alignment="0" min="-2" pref="131" max="-2" attributes="0"/>
-                          <Component id="fdPos" alignment="0" min="-2" pref="131" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="fdName" pref="363" max="32767" attributes="0"/>
+                          <Component id="fdPos" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -362,17 +362,17 @@
                     </Constraint>
                   </Constraints>
                 </Component>
-                <Component class="group22.Tabs.Payslips" name="payslips1">
-                  <Constraints>
-                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-                      <CardConstraints cardName="payslip"/>
-                    </Constraint>
-                  </Constraints>
-                </Component>
                 <Component class="group22.Tabs.Paid" name="paid1">
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
                       <CardConstraints cardName="paid"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="group22.Tabs.Payslips" name="payslips1">
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                      <CardConstraints cardName="payslip"/>
                     </Constraint>
                   </Constraints>
                 </Component>

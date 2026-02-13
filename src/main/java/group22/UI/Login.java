@@ -4,10 +4,9 @@
  */
 package group22.UI;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.HashMap;
+import group22.Services.Account;
+import group22.Services.Session;
+import group22.Services.User;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,28 +16,16 @@ import javax.swing.JOptionPane;
 public class Login extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Login.class.getName());
-    private static final HashMap<String, String[]> user = new HashMap<>();
 
     /**
      * Creates new form Login
      */
+    private final Account account;
+    
     public Login() {
         initComponents();
-    }
-    
-    public static void loadUsers() {
-        user.clear();
-        try (BufferedReader br = new BufferedReader(new FileReader("login.csv"))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] data = line.split(",");
-                if (data.length == 3) {
-                    user.put(data[0], new String[]{data[1], data[2]});
-                }
-            }
-        } catch (IOException e) {
-            System.err.println("Error reading file: " + e.getMessage());
-        }
+        account = new Account();
+        account.loadUsers("login.csv");
     }
 
     /**
@@ -218,21 +205,20 @@ public class Login extends javax.swing.JFrame {
 
     private void LButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LButtonActionPerformed
         // TODO add your handling code here:
-        loadUsers();
+        String name = LName.getText().trim();
+        String pw = new String(LPassword.getPassword()).trim();
         
-        String name = LName.getText();
-        String pw = LPassword.getText();
+        User user = account.login(name, pw);
         
-        if (user.containsKey(name.trim()) && user.get(name.trim())[0].equals(pw.trim())) {
+        if (user != null) {
+            Session.start(user);
+            
             Main n = new Main();
             n.setVisible(true);
-            
-            //String position = user.get(name)[1];
-            //n.setUser(name, position);
-            
+
             dispose();
         } else {
-            JOptionPane.showMessageDialog(null, "Incorrect Username/Password.");
+            JOptionPane.showMessageDialog(this, "Incorrect Username/Password.");
         }
     }//GEN-LAST:event_LButtonActionPerformed
 

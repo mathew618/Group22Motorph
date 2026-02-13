@@ -7,6 +7,7 @@ package group22.Tabs;
 import group22.Services.Data;
 import group22.Services.EmpSalary;
 import group22.Model.Employee;
+import static group22.motorph.MotorPH.TEMP_CSV_NAME;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.text.DecimalFormat;
@@ -26,8 +27,10 @@ public class Payslips extends javax.swing.JPanel {
      * Creates new form Payslips
      */
     private final EmpSalary currentSalary;
+    private final String SEARCH_PLACEHOLDER = "Search Employee Name";
 
     public Payslips() {
+        Data.loadEmployees(TEMP_CSV_NAME);
         initComponents();
         PsScroll.getVerticalScrollBar().setUnitIncrement(16);
 
@@ -35,6 +38,7 @@ public class Payslips extends javax.swing.JPanel {
 
         updateSalaryFromFields();
 
+        search();
         addListeners();
 
         focus(rHwp);
@@ -48,7 +52,7 @@ public class Payslips extends javax.swing.JPanel {
         focus(dSssc);
         focus(dPhc);
         focus(dPc);
-        
+
         reload();
     }
 
@@ -133,23 +137,54 @@ public class Payslips extends javax.swing.JPanel {
             }
         });
     }
-    
+
     private void reload() {
         wats.removeAllItems();
-        
+
         for (Employee e : Data.getEmployees()) {
             wats.addItem(e.getLastName() + ", " + e.getFirstName());
         }
     }
-    
-    private Employee findEmployee(String name) {
-        for (Employee e : Data.getEmployees()) {
-            String fullName = e.getLastName() + ", " + e.getFirstName();
-            if (fullName.equals(name)) {
-                return e;
+
+    private void search() {
+        searchF.getDocument().addDocumentListener(new DocumentListener() {
+
+            private void filterComboBox() {
+
+                String searchText = searchF.getText().toLowerCase().trim();
+
+                wats.removeAllItems();
+
+                if (searchF.getText().equals(SEARCH_PLACEHOLDER)) {
+                    reload();
+                    return;
+                }
+
+                for (Employee emp : Data.getEmployees()) {
+                    
+                    String fullName = emp.getLastName() + ", " + emp.getFirstName();
+
+                    if (fullName.toLowerCase().contains(searchText)) {
+                        wats.addItem(fullName);
+                    }
+                }
             }
-        }
-        return null;
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                filterComboBox();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                filterComboBox();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                filterComboBox();
+            }
+        });
     }
 
     /**
@@ -959,38 +994,44 @@ public class Payslips extends javax.swing.JPanel {
     private void watsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_watsActionPerformed
         // TODO add your handling code here:
         String selected = (String) wats.getSelectedItem();
-        Employee emp = findEmployee(selected);
-        
-        if (emp == null) return;
-        
+        Employee emp = Data.findEmployee(selected);
+
+        if (emp == null) {
+            return;
+        }
+
         try {
             LocalDate date = LocalDate.now();
             double hourly = Double.parseDouble(emp.getHourlyRate());
             currentSalary.setRegularRate(hourly);
-            
+
             rDate.setText(date.format(DateTimeFormatter.ofPattern("MM-dd-yyyy")));
 
             rRate.setText(String.valueOf(hourly));
             rHwp.setText("8");
-            
+
             rName.setText(emp.getLastName() + ", " + emp.getFirstName());
             rNumber.setText(emp.getEmpNumber());
 
         } catch (NumberFormatException ex) {
             rRate.setText("0");
         }
-        
+
     }//GEN-LAST:event_watsActionPerformed
 
     private void searchFFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchFFocusGained
         // TODO add your handling code here:
-        searchF.setText("");
+        if (searchF.getText().equals(SEARCH_PLACEHOLDER)) {
+            searchF.setText("");
+        } else {
+            searchF.selectAll();
+        }
     }//GEN-LAST:event_searchFFocusGained
 
     private void searchFFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchFFocusLost
         // TODO add your handling code here:
         if (searchF.getText().isEmpty()) {
-            searchF.setText("Search Employee Name");
+            searchF.setText(SEARCH_PLACEHOLDER);
         }
     }//GEN-LAST:event_searchFFocusLost
 
@@ -1026,10 +1067,12 @@ public class Payslips extends javax.swing.JPanel {
     private void nPayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nPayActionPerformed
         // TODO add your handling code here:
         String selected = (String) wats.getSelectedItem();
-        Employee emp = findEmployee(selected);
-        
-        if (emp == null) return;
-        
+        Employee emp = Data.findEmployee(selected);
+
+        if (emp == null) {
+            return;
+        }
+
         Data.addPaidData(emp.getEmpNumber(), emp.getFirstName(), emp.getLastName(), rDate.getText(), rTotal.getText(), dTotal.getText(), Net.getText());
     }//GEN-LAST:event_nPayActionPerformed
 

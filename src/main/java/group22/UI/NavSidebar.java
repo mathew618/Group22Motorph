@@ -60,6 +60,11 @@ public class NavSidebar extends JPanel {
         });
 
         panel.add(button);
+        
+        if (activeButton == null) {
+            setActive(button);
+            cardLayout.show(tabName, cardName);
+        }
     }
 
     public void addLogout(Runnable logOut) {

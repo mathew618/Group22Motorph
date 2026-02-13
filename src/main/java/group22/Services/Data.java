@@ -58,6 +58,16 @@ public class Data {
         }
     }
     
+    public static Employee findEmployee(String name) {
+        for (Employee e : getEmployees()) {
+            String fullName = e.getLastName() + ", " + e.getFirstName();
+            if (fullName.equals(name)) {
+                return e;
+            }
+        }
+        return null;
+    }
+    
     public static List<Employee> getEmployees() {
         return employees;
     }
