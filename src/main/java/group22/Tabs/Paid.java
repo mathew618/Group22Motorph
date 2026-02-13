@@ -4,6 +4,10 @@
  */
 package group22.Tabs;
 
+import group22.Services.Data;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+
 /**
  *
  * @author mathe
@@ -15,6 +19,13 @@ public class Paid extends javax.swing.JPanel {
      */
     public Paid() {
         initComponents();
+        paidTableL.setModel(Data.getPayslipModel());
+        
+        // Enable sorting
+        TableRowSorter<TableModel> sorter = new TableRowSorter<>(paidTableL.getModel());
+        paidTableL.setRowSorter(sorter);
+        
+        
     }
 
     /**

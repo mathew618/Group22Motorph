@@ -4,8 +4,8 @@
  */
 package group22.Tabs;
 
-import group22.Model.Data;
-import group22.Model.TempCSV;
+import group22.Services.Data;
+import group22.DAO.TempCSV;
 import static group22.motorph.MotorPH.CSV_NAME;
 import static group22.motorph.MotorPH.TEMP_CSV_NAME;
 import javax.swing.JOptionPane;

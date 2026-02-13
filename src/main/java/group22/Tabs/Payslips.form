@@ -53,12 +53,10 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Component id="jPanel3" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jPanel12" max="32767" attributes="0"/>
-                              <Component id="jPanel13" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jPanel10" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jPanel4" alignment="0" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="jPanel12" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jPanel13" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jPanel10" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jPanel4" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="6" max="32767" attributes="0"/>
                   </Group>
@@ -76,7 +74,7 @@
                       <Component id="jPanel12" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel13" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="32" max="32767" attributes="0"/>
+                      <EmptySpace pref="28" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -215,6 +213,7 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="rName">
                       <Properties>
+                        <Property name="editable" type="boolean" value="false"/>
                         <Property name="text" type="java.lang.String" value="Name"/>
                       </Properties>
                       <Events>
@@ -223,6 +222,7 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="rNumber">
                       <Properties>
+                        <Property name="editable" type="boolean" value="false"/>
                         <Property name="text" type="java.lang.String" value="Number"/>
                       </Properties>
                       <Events>
@@ -233,6 +233,7 @@
                 </Container>
                 <Component class="javax.swing.JTextField" name="rPay">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="text" type="java.lang.String" value="Period"/>
                   </Properties>
                   <Events>
@@ -241,6 +242,7 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="rDate">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="text" type="java.lang.String" value="Date"/>
                   </Properties>
                   <Events>
@@ -739,7 +741,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                          <Component id="refreshBtn" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="wats" min="-2" pref="155" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -760,7 +762,7 @@
                                   <Component id="wats" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="searchF" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jButton2" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="refreshBtn" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -807,12 +809,12 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchFActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton2">
+                <Component class="javax.swing.JButton" name="refreshBtn">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Refresh"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="refreshBtnActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -945,6 +947,7 @@
                                   <Component id="dTax" alignment="0" pref="163" max="32767" attributes="0"/>
                                   <Component id="dSssc" alignment="0" max="32767" attributes="0"/>
                                   <Component id="dPhc" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="dPc" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace pref="24" max="32767" attributes="0"/>
                           </Group>
@@ -953,13 +956,14 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="dTax" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="dSssc" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="dPhc" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="15" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="dPc" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -987,6 +991,14 @@
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dPhcActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="dPc">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="0"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dPcActionPerformed"/>
                       </Events>
                     </Component>
                   </SubComponents>

@@ -2,8 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package group22.Model;
+package group22.Services;
 
+import group22.DAO.EmpCSV;
+import group22.Model.Employee;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -72,4 +74,9 @@ public class Data {
         return salaryModel;
     }
 
+    
+    //Temporary
+    public static void addPaidData(String Emp, String LName, String FName, String Date, String Earn, String Deduct, String Total) {
+        payslipModel.addRow(new Object[]{Emp, LName, FName, Date, Earn, Deduct, Total});
+    }
 }

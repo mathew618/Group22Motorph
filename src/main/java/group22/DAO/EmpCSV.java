@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package group22.Model;
+package group22.DAO;
 
+import group22.Model.Employee;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -28,6 +29,11 @@ public class EmpCSV {
 
             while ((line = br.readLine()) != null) {
                 String[] d = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
+                
+                if (d.length < 23) {
+                    System.out.println("Skipping invalid row: " + line);
+                    continue;
+                }
 
                 Employee emp;
                 emp = new Employee(
@@ -90,6 +96,26 @@ public class EmpCSV {
             }
         } catch (IOException e) {
             System.err.println("Error writing CSV: " + e.getMessage());
+        }
+    }
+
+    public static void addEmployee(String filePath, String... employeeData) {
+        try (FileWriter writer = new FileWriter(filePath, true)) {
+            StringBuilder sb = new StringBuilder();
+
+            for (int i = 0; i < employeeData.length; i++) {
+                sb.append(employeeData[i]);
+
+                if (i < employeeData.length - 1) {
+                    sb.append(",");
+                }
+            }
+            sb.append("\n");
+
+            writer.write(sb.toString());
+            writer.flush();
+        } catch (IOException e) {
+            System.err.println("Error writing to file: " + e.getMessage());
         }
     }
 

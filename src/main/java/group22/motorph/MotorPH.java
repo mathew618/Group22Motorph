@@ -5,8 +5,8 @@
 package group22.motorph;
 
 import group22.UI.Login;
-import group22.Model.Data;
-import group22.Model.TempCSV;
+import group22.Services.Data;
+import group22.DAO.TempCSV;
 
 /**
  *

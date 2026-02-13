@@ -5,9 +5,10 @@
 package group22.Tabs;
 
 import group22.UI.EmployeeDetails;
-import group22.Model.Data;
-import group22.Model.EmpCSV;
+import group22.Services.Data;
+import group22.DAO.EmpCSV;
 import group22.Model.Employee;
+import group22.UI.AddEmployee;
 import static group22.motorph.MotorPH.TEMP_CSV_NAME;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
@@ -198,10 +199,16 @@ public class Employees extends javax.swing.JPanel {
         detailsFrame.setVisible(true);
          
     }//GEN-LAST:event_viewEmpActionPerformed
-
+    
+    private static AddEmployee n;
+    
     private void addEmpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addEmpBtnActionPerformed
         // TODO add your handling code here:
-
+        
+        if (n == null || !n.isDisplayable()) {
+            n = new AddEmployee();
+            n.setVisible(true);
+        }
     }//GEN-LAST:event_addEmpBtnActionPerformed
 
     private void removeEmpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeEmpBtnActionPerformed

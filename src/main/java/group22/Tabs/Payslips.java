@@ -4,8 +4,15 @@
  */
 package group22.Tabs;
 
-import group22.Model.EmpSalary;
+import group22.Services.Data;
+import group22.Services.EmpSalary;
+import group22.Model.Employee;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.text.DecimalFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -18,38 +25,64 @@ public class Payslips extends javax.swing.JPanel {
     /**
      * Creates new form Payslips
      */
-    private EmpSalary currentSalary;
-    
+    private final EmpSalary currentSalary;
+
     public Payslips() {
         initComponents();
         PsScroll.getVerticalScrollBar().setUnitIncrement(16);
-        
+
         currentSalary = new EmpSalary();
-        
+
         updateSalaryFromFields();
-        
+
         addListeners();
+
+        focus(rHwp);
+        focus(rRate);
+        focus(oHwp);
+        focus(oRate);
+        focus(bHwp);
+        focus(bRate);
+
+        focus(dTax);
+        focus(dSssc);
+        focus(dPhc);
+        focus(dPc);
+        
+        reload();
     }
-    
+
     private void addListeners() {
         DocumentListener docListener = new DocumentListener() {
-            @Override public void insertUpdate(DocumentEvent e) { updateSalaryFromFields(); }
-            @Override public void removeUpdate(DocumentEvent e) { updateSalaryFromFields(); }
-            @Override public void changedUpdate(DocumentEvent e) { updateSalaryFromFields(); }
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                updateSalaryFromFields();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                updateSalaryFromFields();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                updateSalaryFromFields();
+            }
         };
 
-            rHwp.getDocument().addDocumentListener(docListener);
-            rRate.getDocument().addDocumentListener(docListener);
-            oHwp.getDocument().addDocumentListener(docListener);
-            oRate.getDocument().addDocumentListener(docListener);
-            bHwp.getDocument().addDocumentListener(docListener);
-            bRate.getDocument().addDocumentListener(docListener);
+        rHwp.getDocument().addDocumentListener(docListener);
+        rRate.getDocument().addDocumentListener(docListener);
+        oHwp.getDocument().addDocumentListener(docListener);
+        oRate.getDocument().addDocumentListener(docListener);
+        bHwp.getDocument().addDocumentListener(docListener);
+        bRate.getDocument().addDocumentListener(docListener);
 
-            dTax.getDocument().addDocumentListener(docListener);
-            dSssc.getDocument().addDocumentListener(docListener);
-            dPhc.getDocument().addDocumentListener(docListener);
+        dTax.getDocument().addDocumentListener(docListener);
+        dSssc.getDocument().addDocumentListener(docListener);
+        dPhc.getDocument().addDocumentListener(docListener);
+        dPc.getDocument().addDocumentListener(docListener);
     }
-    
+
     private void updateSalaryFromFields() {
         try {
             currentSalary.setRegularHoursWorked(Double.parseDouble(rHwp.getText()));
@@ -64,15 +97,16 @@ public class Payslips extends javax.swing.JPanel {
             currentSalary.setWithholdingTax(Double.parseDouble(dTax.getText()));
             currentSalary.setSssDeduction(Double.parseDouble(dSssc.getText()));
             currentSalary.setPhilHealthDeduction(Double.parseDouble(dPhc.getText()));
+            currentSalary.setPagIbigDeduction(Double.parseDouble(dPc.getText()));
 
             DecimalFormat df = new DecimalFormat("#.##");
-                rAmount.setText(df.format(currentSalary.getRegularAmount()));
-                oAmount.setText(df.format(currentSalary.getOvertimeAmount()));
-                bAmount.setText(df.format(currentSalary.getBonusAmount()));
+            rAmount.setText(df.format(currentSalary.calculateRegularAmount()));
+            oAmount.setText(df.format(currentSalary.calculateOvertimeAmount()));
+            bAmount.setText(df.format(currentSalary.calculateBonusAmount()));
 
-                rTotal.setText(df.format(currentSalary.getTotalEarnings()));
-                dTotal.setText(df.format(currentSalary.getTotalDeductions()));
-                Net.setText(df.format(currentSalary.getNetPay()));
+            rTotal.setText(df.format(currentSalary.calculateTotalEarnings()));
+            dTotal.setText(df.format(currentSalary.calculateTotalDeductions()));
+            Net.setText(df.format(currentSalary.calculateNetPay()));
 
         } catch (NumberFormatException e) {
             rAmount.setText("0");
@@ -82,6 +116,40 @@ public class Payslips extends javax.swing.JPanel {
             dTotal.setText("0");
             Net.setText("0");
         }
+    }
+
+    private void focus(JTextField text) {
+        text.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                text.selectAll();
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (text.getText().isEmpty()) {
+                    text.setText("0");
+                }
+            }
+        });
+    }
+    
+    private void reload() {
+        wats.removeAllItems();
+        
+        for (Employee e : Data.getEmployees()) {
+            wats.addItem(e.getLastName() + ", " + e.getFirstName());
+        }
+    }
+    
+    private Employee findEmployee(String name) {
+        for (Employee e : Data.getEmployees()) {
+            String fullName = e.getLastName() + ", " + e.getFirstName();
+            if (fullName.equals(name)) {
+                return e;
+            }
+        }
+        return null;
     }
 
     /**
@@ -135,7 +203,7 @@ public class Payslips extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         wats = new javax.swing.JComboBox<>();
         searchF = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        refreshBtn = new javax.swing.JButton();
         jPanel12 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
@@ -143,6 +211,7 @@ public class Payslips extends javax.swing.JPanel {
         dTax = new javax.swing.JTextField();
         dSssc = new javax.swing.JTextField();
         dPhc = new javax.swing.JTextField();
+        dPc = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         dTotal = new javax.swing.JTextField();
         jPanel17 = new javax.swing.JPanel();
@@ -178,9 +247,11 @@ public class Payslips extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("EMPLOYEE NUMBER: ");
 
+        rName.setEditable(false);
         rName.setText("Name");
         rName.addActionListener(this::rNameActionPerformed);
 
+        rNumber.setEditable(false);
         rNumber.setText("Number");
         rNumber.addActionListener(this::rNumberActionPerformed);
 
@@ -215,9 +286,11 @@ public class Payslips extends javax.swing.JPanel {
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
+        rPay.setEditable(false);
         rPay.setText("Period");
         rPay.addActionListener(this::rPayActionPerformed);
 
+        rDate.setEditable(false);
         rDate.setText("Date");
         rDate.addActionListener(this::rDateActionPerformed);
 
@@ -550,8 +623,8 @@ public class Payslips extends javax.swing.JPanel {
         });
         searchF.addActionListener(this::searchFActionPerformed);
 
-        jButton2.setText("Refresh");
-        jButton2.addActionListener(this::jButton2ActionPerformed);
+        refreshBtn.setText("Refresh");
+        refreshBtn.addActionListener(this::refreshBtnActionPerformed);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -559,7 +632,7 @@ public class Payslips extends javax.swing.JPanel {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton2)
+                .addComponent(refreshBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(wats, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -577,7 +650,7 @@ public class Payslips extends javax.swing.JPanel {
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(wats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(searchF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(refreshBtn, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
 
@@ -617,6 +690,9 @@ public class Payslips extends javax.swing.JPanel {
         dPhc.setText("0");
         dPhc.addActionListener(this::dPhcActionPerformed);
 
+        dPc.setText("0");
+        dPc.addActionListener(this::dPcActionPerformed);
+
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
         jPanel14Layout.setHorizontalGroup(
@@ -626,19 +702,21 @@ public class Payslips extends javax.swing.JPanel {
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(dTax, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
                     .addComponent(dSssc)
-                    .addComponent(dPhc))
+                    .addComponent(dPhc)
+                    .addComponent(dPc))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel14Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addContainerGap()
                 .addComponent(dTax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(dSssc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(dPhc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(dPc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jLabel19.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -789,11 +867,10 @@ public class Payslips extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(gradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(gradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jPanel12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         gradientPanel1Layout.setVerticalGroup(
@@ -808,7 +885,7 @@ public class Payslips extends javax.swing.JPanel {
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         PsScroll.setViewportView(gradientPanel1);
@@ -881,6 +958,28 @@ public class Payslips extends javax.swing.JPanel {
 
     private void watsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_watsActionPerformed
         // TODO add your handling code here:
+        String selected = (String) wats.getSelectedItem();
+        Employee emp = findEmployee(selected);
+        
+        if (emp == null) return;
+        
+        try {
+            LocalDate date = LocalDate.now();
+            double hourly = Double.parseDouble(emp.getHourlyRate());
+            currentSalary.setRegularRate(hourly);
+            
+            rDate.setText(date.format(DateTimeFormatter.ofPattern("MM-dd-yyyy")));
+
+            rRate.setText(String.valueOf(hourly));
+            rHwp.setText("8");
+            
+            rName.setText(emp.getLastName() + ", " + emp.getFirstName());
+            rNumber.setText(emp.getEmpNumber());
+
+        } catch (NumberFormatException ex) {
+            rRate.setText("0");
+        }
+        
     }//GEN-LAST:event_watsActionPerformed
 
     private void searchFFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchFFocusGained
@@ -899,9 +998,10 @@ public class Payslips extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_searchFActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        reload();
+    }//GEN-LAST:event_refreshBtnActionPerformed
 
     private void dTaxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dTaxActionPerformed
         // TODO add your handling code here:
@@ -925,11 +1025,21 @@ public class Payslips extends javax.swing.JPanel {
 
     private void nPayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nPayActionPerformed
         // TODO add your handling code here:
+        String selected = (String) wats.getSelectedItem();
+        Employee emp = findEmployee(selected);
+        
+        if (emp == null) return;
+        
+        Data.addPaidData(emp.getEmpNumber(), emp.getFirstName(), emp.getLastName(), rDate.getText(), rTotal.getText(), dTotal.getText(), Net.getText());
     }//GEN-LAST:event_nPayActionPerformed
 
     private void rDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rDateActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rDateActionPerformed
+
+    private void dPcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dPcActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dPcActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -938,12 +1048,12 @@ public class Payslips extends javax.swing.JPanel {
     private javax.swing.JTextField bAmount;
     private javax.swing.JTextField bHwp;
     private javax.swing.JTextField bRate;
+    private javax.swing.JTextField dPc;
     private javax.swing.JTextField dPhc;
     private javax.swing.JTextField dSssc;
     private javax.swing.JTextField dTax;
     private javax.swing.JTextField dTotal;
     private group22.UI.GradientPanel gradientPanel1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -994,6 +1104,7 @@ public class Payslips extends javax.swing.JPanel {
     private javax.swing.JTextField rPay;
     private javax.swing.JTextField rRate;
     private javax.swing.JTextField rTotal;
+    private javax.swing.JButton refreshBtn;
     private javax.swing.JTextField searchF;
     private javax.swing.JComboBox<String> wats;
     // End of variables declaration//GEN-END:variables

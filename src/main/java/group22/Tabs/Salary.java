@@ -4,7 +4,7 @@
  */
 package group22.Tabs;
 
-import group22.Model.Data;
+import group22.Services.Data;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 

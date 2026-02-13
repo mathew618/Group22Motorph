@@ -8,19 +8,14 @@ package group22.Model;
  *
  * @author LENOVO
  */
-public interface SalaryOperations { 
-    double getRegularAmount();
-    double getOvertimeAmount();
-    double getBonusAmount();
-    double getTotalEarnings();
-    double getTotalDeductions();
-    double getNetPay();
+public interface SalaryOperations {
 
-    // Calculation methods
     double calculateRegularAmount();
     double calculateOvertimeAmount();
     double calculateBonusAmount();
+
     double calculateTotalEarnings();
     double calculateTotalDeductions();
     double calculateNetPay();
 }
+
