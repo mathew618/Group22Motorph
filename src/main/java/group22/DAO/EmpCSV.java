@@ -57,6 +57,11 @@ public class EmpCSV {
                     public double calculateSalary() {
                         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
                     }
+
+                    @Override
+                    public String getEmployeeType() {
+                        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+                    }
                 };
 
                 employees.add(emp);

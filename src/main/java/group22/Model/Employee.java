@@ -20,6 +20,7 @@ public abstract class Employee {
     protected String basicSalary;
     protected String grossSemiMonthly;
     protected String hourlyRate;
+    protected String empType;
 
     public Employee(String empNumber, String lastName, String firstName, String birthdate, String address, String phone, String status, String position, String sss, String tin, String philHealth, String pagIbig, String basicSalary, String grossSemiMonthly, String hourlyRate) {
         this.empNumber = empNumber;
@@ -40,6 +41,7 @@ public abstract class Employee {
     }
     
     public abstract double calculateSalary();
+    public abstract String getEmployeeType();
     
     //getters
     public String getEmpNumber(){

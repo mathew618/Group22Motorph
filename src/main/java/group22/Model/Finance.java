@@ -8,14 +8,19 @@ package group22.Model;
  *
  * @author mathe
  */
-public class RegularEmployee extends Employee {
+public class Finance extends Employee {
 
-    public RegularEmployee(String empNumber, String lastName, String firstName, String birthdate, String address, String phone, String status, String position, String sss, String tin, String philHealth, String pagIbig, String basicSalary, String grossSemiMonthly, String hourlyRate) {
+    public Finance(String empNumber, String lastName, String firstName, String birthdate, String address, String phone, String status, String position, String sss, String tin, String philHealth, String pagIbig, String basicSalary, String grossSemiMonthly, String hourlyRate) {
         super(empNumber, lastName, firstName, birthdate, address, phone, status, position, sss, tin, philHealth, pagIbig, basicSalary, grossSemiMonthly, hourlyRate);
     }
 
     @Override
     public double calculateSalary() {
         return Double.parseDouble(getBasicSalary());
+    }
+    
+    @Override
+    public String getEmployeeType() {
+        return empType;
     }
 }

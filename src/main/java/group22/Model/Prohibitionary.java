@@ -8,9 +8,9 @@ package group22.Model;
  *
  * @author mathe
  */
-public class HR extends Employee {
+public class Prohibitionary extends Employee {
 
-    public HR(String empNumber, String lastName, String firstName, String birthdate, String address, String phone, String status, String position, String sss, String tin, String philHealth, String pagIbig, String basicSalary, String grossSemiMonthly, String hourlyRate) {
+    public Prohibitionary(String empNumber, String lastName, String firstName, String birthdate, String address, String phone, String status, String position, String sss, String tin, String philHealth, String pagIbig, String basicSalary, String grossSemiMonthly, String hourlyRate) {
         super(empNumber, lastName, firstName, birthdate, address, phone, status, position, sss, tin, philHealth, pagIbig, basicSalary, grossSemiMonthly, hourlyRate);
     }
 

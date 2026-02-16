@@ -18,4 +18,9 @@ public class IT extends Employee {
     public double calculateSalary() {
         return Double.parseDouble(getBasicSalary());
     }
+    
+    @Override
+    public String getEmployeeType() {
+        return empType;
+    }
 }
