@@ -37,6 +37,8 @@ public class Attendance extends javax.swing.JPanel {
     public static void load(DefaultTableModel model) {
         try (BufferedReader br = new BufferedReader(new FileReader("AttendanceData.csv"))) {
             String line;
+            br.readLine();
+            
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
                 if (data.length == 5) {

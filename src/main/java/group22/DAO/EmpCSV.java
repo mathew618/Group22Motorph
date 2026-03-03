@@ -29,7 +29,7 @@ public class EmpCSV {
 
             while ((line = br.readLine()) != null) {
                 String[] d = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
-                
+
                 if (d.length < 23) {
                     System.out.println("Skipping invalid row: " + line);
                     continue;
@@ -109,7 +109,7 @@ public class EmpCSV {
             StringBuilder sb = new StringBuilder();
 
             for (int i = 0; i < employeeData.length; i++) {
-                sb.append(employeeData[i]);
+                sb.append(escapeCSV(employeeData[i]));
 
                 if (i < employeeData.length - 1) {
                     sb.append(",");
@@ -119,9 +119,27 @@ public class EmpCSV {
 
             writer.write(sb.toString());
             writer.flush();
+            
         } catch (IOException e) {
             System.err.println("Error writing to file: " + e.getMessage());
         }
     }
 
+    private static String escapeCSV(String value) {
+        if (value == null) {
+            return "";
+        }
+
+        boolean containsSpecial = value.contains(",") || value.contains("\"") || value.contains("\n");
+
+        if (value.contains("\"")) {
+            value = value.replace("\"", "\"\"");
+        }
+
+        if (containsSpecial) {
+            value = "\"" + value + "\"";
+        }
+
+        return value;
+    }
 }
