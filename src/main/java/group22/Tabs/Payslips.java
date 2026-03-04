@@ -1004,7 +1004,8 @@ public class Payslips extends javax.swing.JPanel {
             LocalDate date = LocalDate.now();
             double hourly = Double.parseDouble(emp.getHourlyRate());
             currentSalary.setRegularRate(hourly);
-
+            
+            rPay.setText("Daily");
             rDate.setText(date.format(DateTimeFormatter.ofPattern("MM-dd-yyyy")));
 
             rRate.setText(String.valueOf(hourly));

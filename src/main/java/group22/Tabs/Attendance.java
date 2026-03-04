@@ -4,15 +4,8 @@
  */
 package group22.Tabs;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import javax.swing.JOptionPane;
-import javax.swing.RowFilter;
+import group22.Services.AttendServ;
+import group22.Services.Data;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -27,57 +20,17 @@ public class Attendance extends javax.swing.JPanel {
      * Creates new form Attendance
      */
     private final TableRowSorter<TableModel> sorter;
-    private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("MM-dd-yyyy");
-    private static final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("HH:mm:ss");
     private static DefaultTableModel model;
-    
-    class Attend {
-    
-    // Load attendance data from CSV file
-    public static void load(DefaultTableModel model) {
-        try (BufferedReader br = new BufferedReader(new FileReader("AttendanceData.csv"))) {
-            String line;
-            br.readLine();
-            
-            while ((line = br.readLine()) != null) {
-                String[] data = line.split(",");
-                if (data.length == 5) {
-                    model.addRow(data);
-                }
-            }
-        } catch (FileNotFoundException e) {
-            System.err.println("File not found: " + e.getMessage());
-        } catch (IOException e) {
-            System.err.println("Error loading file: " + e.getMessage());
-        }
-    }
-    
-    //Check if the fields are not empty
-    public static boolean checkInput(String name, String empNo) {
-        if (name.isEmpty() && empNo.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Please enter employee name and employee number.");
-            return false;
-        } else if (name.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Please enter employee name.");
-            return false;
-        } else if (empNo.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Please enter employee number.");
-            return false;
-        }
-        return true;
-    }
-}
-    
+
     public Attendance() {
         initComponents();
-        
-        model = new DefaultTableModel(new Object[]{"Employee Number", "Employee", "Date", "Time in", "Time Out"}, 0);
-        jTable1.setModel(model);
+        model = Data.getAttendModel();
+        attendTableL.setModel(model);
 
-        sorter = new TableRowSorter<>(jTable1.getModel());
-        jTable1.setRowSorter(sorter);  // important!
+        // Enable sorting
+        sorter = new TableRowSorter<>(attendTableL.getModel());
+        attendTableL.setRowSorter(sorter);
 
-        Attend.load(model);
     }
 
     /**
@@ -95,7 +48,7 @@ public class Attendance extends javax.swing.JPanel {
         logIN = new javax.swing.JButton();
         logOut = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        attendTableL = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         MonthPicker = new javax.swing.JComboBox<>();
         empNumA = new javax.swing.JTextField();
@@ -117,7 +70,7 @@ public class Attendance extends javax.swing.JPanel {
         logOut.setText("Log-Out");
         logOut.addActionListener(this::logOutActionPerformed);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        attendTableL.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -136,7 +89,7 @@ public class Attendance extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(attendTableL);
 
         jLabel1.setText("Enter Employee Name:");
 
@@ -224,90 +177,26 @@ public class Attendance extends javax.swing.JPanel {
 
     private void logINActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logINActionPerformed
         // TODO add your handling code here:
-        String name = empNameA.getText().trim();
-        String empNo = empNumA.getText().trim();
-
-        if (!Attend.checkInput(name, empNo)) {
-            return;
-        }
-
-        LocalDate date = LocalDate.now();
-        LocalTime timeIn = LocalTime.now();
-
-        model.addRow(new Object[]{
-            empNo,
-            name,
-            date.format(DATE_FORMAT),
-            timeIn.format(TIME_FORMAT),
-            ""
-        });
-
-        // Clear button action: clears both employee number and name fields
-        empNumA.setText(""); // Clear employee number field
-        empNameA.setText(""); // Clear name field
+        
+        AttendServ.logIn(empNameA, empNumA, model);
     }//GEN-LAST:event_logINActionPerformed
 
     private void logOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutActionPerformed
         // TODO add your handling code here:
-        String name = empNameA.getText().trim();
-        String empNo = empNumA.getText().trim();
-
-        if (!Attend.checkInput(name, empNo)) {
-            return;
-        }
-
-        // Get current date and time for logging out
-        LocalDate today = LocalDate.now();
-        LocalTime timeOut = LocalTime.now();
-
-        for (int i = 0; i < model.getRowCount(); i++) {
-            String rowEmpNo = model.getValueAt(i, 0).toString();
-            String rowName = model.getValueAt(i, 1).toString();
-            String rowDate = model.getValueAt(i, 2).toString();
-            String rowTimeOut = model.getValueAt(i, 4).toString();
-
-            if (rowDate.equals(today.format(DATE_FORMAT))
-                && rowName.equals(name)
-                && rowEmpNo.equals(empNo)
-                && rowTimeOut.isEmpty()) {
-
-                model.setValueAt(timeOut.format(TIME_FORMAT), i, 4);
-                JOptionPane.showMessageDialog(null, "Logged out successfully!");
-                empNameA.setText("");
-                empNumA.setText("");
-                return;
-            }
-        }
-        // If no matching record is found
-        JOptionPane.showMessageDialog(null, "No matching login record found for logout.");
+        
+        AttendServ.logOut(empNameA, empNumA, model);
     }//GEN-LAST:event_logOutActionPerformed
 
     private void MonthPickerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MonthPickerActionPerformed
-        String selected = (String) MonthPicker.getSelectedItem();
-
-        if ("All".equals(selected)) {
-            sorter.setRowFilter(null);
-        } else {
-            int monthIndex = MonthPicker.getSelectedIndex() - 1; // Subtract 1 for Jan = 0
-
-            sorter.setRowFilter(new RowFilter<TableModel, Integer>() {
-                @Override
-                public boolean include(RowFilter.Entry<? extends TableModel, ? extends Integer> entry) {
-                    try {
-                        String dateString = entry.getStringValue(2); // 3rd column = Date
-                        LocalDate date = LocalDate.parse(dateString, DATE_FORMAT);
-                        return date.getMonthValue() == (monthIndex + 1); // back to 1–12
-                    } catch (Exception e) {
-                        return false;
-                    }
-                }
-            });
-        }
+        // TODO add your handling code here:
+        
+        AttendServ.monthFilter(MonthPicker, sorter);
     }//GEN-LAST:event_MonthPickerActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> MonthPicker;
+    private javax.swing.JTable attendTableL;
     private javax.swing.JTextField empNameA;
     private javax.swing.JTextField empNumA;
     private group22.UI.GradientPanel gradientPanel1;
@@ -315,7 +204,6 @@ public class Attendance extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JButton logIN;
     private javax.swing.JButton logOut;
     // End of variables declaration//GEN-END:variables

@@ -12,12 +12,9 @@ import javax.swing.*;
  * @author lol21
  */
 public class GradientPanel extends JPanel {
+
     private Color color1 = Color.CYAN;
     private Color color2 = Color.BLUE;
-
-    public GradientPanel() {
-        setOpaque(false);
-    }
 
     @Override
     protected void paintComponent(Graphics g) {
@@ -25,9 +22,9 @@ public class GradientPanel extends JPanel {
         Graphics2D g2d = (Graphics2D) g.create();
         int w = getWidth();
         int h = getHeight();
-        
+
         GradientPaint gp = new GradientPaint(0, 0, color1, w, h, color2);
-        
+
         g2d.setPaint(gp);
         g2d.fillRect(0, 0, w, h);
         g2d.dispose();

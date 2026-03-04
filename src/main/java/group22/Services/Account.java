@@ -23,11 +23,12 @@ public class Account {
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
+            br.readLine();
 
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
 
-                if (data.length == 3) {
+                if (data.length == 4) {
                     users.put(data[0].trim(), new String[]{
                         data[1].trim(), // password
                         data[2].trim() // position

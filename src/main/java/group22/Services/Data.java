@@ -4,7 +4,9 @@
  */
 package group22.Services;
 
+import group22.DAO.AttendCSV;
 import group22.DAO.EmpCSV;
+import group22.Model.Attendance;
 import group22.Model.Employee;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -27,7 +29,12 @@ public class Data {
             new Object[]{"Employee Number", "Last Name", "First Name", "Basic Salary", "Gross Semi-monthly Rate", "Hourly Rate"}, 0
     );
     
+    private static final DefaultTableModel attendModel = new DefaultTableModel(
+            new Object[]{"Employee Number", "Employee", "Date", "Time in", "Time Out"}, 0
+    );
+    
     private static List<Employee> employees;
+    private static List<Attendance> attendances;
 
     public static void loadEmployees(String filePath) {
 
@@ -58,6 +65,25 @@ public class Data {
         }
     }
     
+    public static void loadAttendance(String filePath) {
+
+        attendances = AttendCSV.read(filePath);
+
+        attendModel.setRowCount(0);
+
+        for (Attendance e : attendances) {
+
+            // Attendance table
+            attendModel.addRow(new Object[]{
+                e.getEmpNumber(),
+                e.getEmpName(),
+                e.getDate(),
+                e.getLogIn(),
+                e.getLogOut()
+            });
+        }
+    }
+    
     public static Employee findEmployee(String name) {
         for (Employee e : getEmployees()) {
             String fullName = e.getLastName() + ", " + e.getFirstName();
@@ -82,6 +108,10 @@ public class Data {
 
     public static DefaultTableModel getSalaryModel() {
         return salaryModel;
+    }
+    
+    public static DefaultTableModel getAttendModel() {
+        return attendModel;
     }
 
     

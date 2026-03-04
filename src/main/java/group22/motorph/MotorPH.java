@@ -16,10 +16,12 @@ public class MotorPH {
     
     public static final String CSV_NAME = "Employee.csv";
     public static final String TEMP_CSV_NAME = "temp_emp.csv";
+    public static final String ATTENDANCE_CSV_NAME = "AttendanceData.csv";
     
     public static void main(String[] args) {
         TempCSV.duplicateCSV(CSV_NAME, TEMP_CSV_NAME);
         Data.loadEmployees(TEMP_CSV_NAME);
+        Data.loadAttendance(ATTENDANCE_CSV_NAME);
         
         new Login().setVisible(true);
     }

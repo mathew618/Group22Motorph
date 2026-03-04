@@ -1,8 +1,44 @@
-1,1,Test
-2,2,Employee
-Fidel David Sario,Youtubers!,Admin
-Mathew Wilson Vercida,Bread,Employee
-Bianca Colleen Herrero,MotorPH1234,Admin
-Elisha Chen Cang, MotorPH1234,Admin
-Sandrine Sophia Baluyot,MotorPH1234,Admin
-John Ray Herdani,MotorPH1234,Admin
+USERNAME,PASSWORD,POSITON,STATUS
+Aadmin,Admin123,Admin,Regular
+GManuel,garcia123,Employee,Regular
+LAntonio,lim123,Employee,Regular
+ABianca,aquino123,Employee,Regular
+RIsabella,reyes123,Employee,Regular
+HEduard,hernandez123,IT,Regular
+VAndrea,villanueva123,HR,Regular
+SjBrad,sanjose123,HR,Regular
+RAlice,romualdez123,Finance,Regular
+ARosie,atienza123,Finance,Regular
+ARoderick,alvaro123,Finance,Regular
+SAnthony,salcedo123,Finance,Regular
+LJosie,lopez123,Finance,Regular
+FMartha,farala123,Finance,Regular
+MLeila,martinez123,Finance,Regular
+RFredrick,romualdez123,Admin,Regular
+MChristian,mata123,Admin,Regular
+DlSelena,deleon123,Admin,Regular
+SjAlison,sanjose123,Employee,Regular
+RCydney,rosario123,Employee,Regular
+BMark,bautista123,Employee,Regular
+LDarlene,lazaro123,Employee,Probationary
+DsKolby,delossantos123,Employee,Probationary
+SVella,santos123,Employee,Probationary
+DrTomas,delrosario123,Employee,Probationary
+TJacklyn,tolentino123,Employee,Probationary
+GPercival,gutierrex123,Employee,Probationary
+MGarfield,manalaysay123,Employee,Probationary
+VLizeth,villegas123,Employee,Probationary
+RCarol,ramos123,Employee,Probationary
+MEmelia,maceda123,Employee,Probationary
+ADelia,aguilar123,Employee,Probationary
+CJohn,castro123,Employee,Regular
+MCarlos,martinez123,Employee,Regular
+SBeatriz,santos123,Employee,Regular
+1,1,Test,Regular
+2,2,Employee,Regular
+Fidel David Sario,Youtubers!,Admin,Regular
+Mathew Wilson Vercida,Bread,Employee,Regular
+Bianca Colleen Herrero,MotorPH1234,Admin,Regular
+Elisha Chen Cang, MotorPH1234,Admin,Regular
+Sandrine Sophia Baluyot,MotorPH1234,Admin,Regular
+John Ray Herdani,MotorPH1234,Admin,Regular
