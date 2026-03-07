@@ -8,12 +8,12 @@ package group22.Tabs;
  *
  * @author HP
  */
-public class MyLeaves extends javax.swing.JPanel {
+public class MyPayslips extends javax.swing.JPanel {
 
     /**
-     * Creates new form MyLeaves
+     * Creates new form MyPayslips
      */
-    public MyLeaves() {
+    public MyPayslips() {
         initComponents();
     }
 
@@ -27,20 +27,16 @@ public class MyLeaves extends javax.swing.JPanel {
     private void initComponents() {
 
         gradientPanel1 = new group22.UI.GradientPanel();
-        gradientPanel2 = new group22.UI.GradientPanel();
         jLabel5 = new javax.swing.JLabel();
         searchF = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         empTableL = new javax.swing.JTable();
 
-        gradientPanel1.setColor1(new java.awt.Color(140, 230, 230));
-        gradientPanel1.setColor2(new java.awt.Color(50, 113, 175));
-
-        gradientPanel2.setColor1(new java.awt.Color(228, 255, 255));
-        gradientPanel2.setColor2(new java.awt.Color(102, 204, 255));
+        gradientPanel1.setColor1(new java.awt.Color(228, 255, 255));
+        gradientPanel1.setColor2(new java.awt.Color(102, 204, 255));
 
         jLabel5.setFont(new java.awt.Font("Bahnschrift", 1, 24)); // NOI18N
-        jLabel5.setText("• LEAVE HISTORY");
+        jLabel5.setText("• PAYSLIP");
 
         searchF.setText("Search Employee Name");
         searchF.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -54,17 +50,17 @@ public class MyLeaves extends javax.swing.JPanel {
 
         empTableL.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Employee Number", "Start Date", "End Date", "Total Days", "Status", "Reason"
+                "Employee Number", " Last Name", "First Name", "Pay Period", "PayDate", "Gross Pay", "Deductions", "Net Pay"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -73,39 +69,32 @@ public class MyLeaves extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(empTableL);
 
-        javax.swing.GroupLayout gradientPanel2Layout = new javax.swing.GroupLayout(gradientPanel2);
-        gradientPanel2.setLayout(gradientPanel2Layout);
-        gradientPanel2Layout.setHorizontalGroup(
-            gradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(gradientPanel2Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(gradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(searchF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(28, Short.MAX_VALUE))
-        );
-        gradientPanel2Layout.setVerticalGroup(
-            gradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(gradientPanel2Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(searchF, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
-        );
-
         javax.swing.GroupLayout gradientPanel1Layout = new javax.swing.GroupLayout(gradientPanel1);
         gradientPanel1.setLayout(gradientPanel1Layout);
         gradientPanel1Layout.setHorizontalGroup(
             gradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(gradientPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(gradientPanel1Layout.createSequentialGroup()
+                .addGroup(gradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(gradientPanel1Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel5))
+                    .addGroup(gradientPanel1Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addGroup(gradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(searchF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         gradientPanel1Layout.setVerticalGroup(
             gradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(gradientPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(gradientPanel1Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(searchF, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -136,7 +125,6 @@ public class MyLeaves extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable empTableL;
     private group22.UI.GradientPanel gradientPanel1;
-    private group22.UI.GradientPanel gradientPanel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField searchF;
