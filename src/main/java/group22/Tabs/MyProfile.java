@@ -27,19 +27,34 @@ public class MyProfile extends javax.swing.JPanel {
     private void initComponents() {
 
         gradientPanel2 = new group22.UI.GradientPanel();
+        gradientPanel3 = new group22.UI.GradientPanel();
 
         gradientPanel2.setColor1(new java.awt.Color(228, 255, 255));
         gradientPanel2.setColor2(new java.awt.Color(102, 204, 255));
+
+        gradientPanel3.setColor1(new java.awt.Color(228, 255, 255));
+        gradientPanel3.setColor2(new java.awt.Color(102, 204, 255));
+
+        javax.swing.GroupLayout gradientPanel3Layout = new javax.swing.GroupLayout(gradientPanel3);
+        gradientPanel3.setLayout(gradientPanel3Layout);
+        gradientPanel3Layout.setHorizontalGroup(
+            gradientPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 631, Short.MAX_VALUE)
+        );
+        gradientPanel3Layout.setVerticalGroup(
+            gradientPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 430, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout gradientPanel2Layout = new javax.swing.GroupLayout(gradientPanel2);
         gradientPanel2.setLayout(gradientPanel2Layout);
         gradientPanel2Layout.setHorizontalGroup(
             gradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 631, Short.MAX_VALUE)
+            .addComponent(gradientPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         gradientPanel2Layout.setVerticalGroup(
             gradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 430, Short.MAX_VALUE)
+            .addComponent(gradientPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -57,5 +72,6 @@ public class MyProfile extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private group22.UI.GradientPanel gradientPanel2;
+    private group22.UI.GradientPanel gradientPanel3;
     // End of variables declaration//GEN-END:variables
 }
