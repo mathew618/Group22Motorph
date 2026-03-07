@@ -27,19 +27,85 @@ public class MyLeaves extends javax.swing.JPanel {
     private void initComponents() {
 
         gradientPanel1 = new group22.UI.GradientPanel();
+        gradientPanel2 = new group22.UI.GradientPanel();
+        jLabel5 = new javax.swing.JLabel();
+        searchF = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        empTableL = new javax.swing.JTable();
 
         gradientPanel1.setColor1(new java.awt.Color(140, 230, 230));
         gradientPanel1.setColor2(new java.awt.Color(50, 113, 175));
+
+        gradientPanel2.setColor1(new java.awt.Color(228, 255, 255));
+        gradientPanel2.setColor2(new java.awt.Color(102, 204, 255));
+
+        jLabel5.setFont(new java.awt.Font("Bahnschrift", 1, 24)); // NOI18N
+        jLabel5.setText("• LEAVE HISTORY");
+
+        searchF.setText("Search Employee Name");
+        searchF.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                searchFFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                searchFFocusLost(evt);
+            }
+        });
+
+        empTableL.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Employee Number", "Start Date", "End Date", "Total Days", "Status", "Reason"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(empTableL);
+
+        javax.swing.GroupLayout gradientPanel2Layout = new javax.swing.GroupLayout(gradientPanel2);
+        gradientPanel2.setLayout(gradientPanel2Layout);
+        gradientPanel2Layout.setHorizontalGroup(
+            gradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(gradientPanel2Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(gradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(searchF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(28, Short.MAX_VALUE))
+        );
+        gradientPanel2Layout.setVerticalGroup(
+            gradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(gradientPanel2Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(searchF, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+                .addGap(38, 38, 38))
+        );
 
         javax.swing.GroupLayout gradientPanel1Layout = new javax.swing.GroupLayout(gradientPanel1);
         gradientPanel1.setLayout(gradientPanel1Layout);
         gradientPanel1Layout.setHorizontalGroup(
             gradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 620, Short.MAX_VALUE)
+            .addComponent(gradientPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         gradientPanel1Layout.setVerticalGroup(
             gradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 420, Short.MAX_VALUE)
+            .addComponent(gradientPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -54,8 +120,25 @@ public class MyLeaves extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void searchFFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchFFocusGained
+        // TODO add your handling code here:
+        searchF.setText("");
+    }//GEN-LAST:event_searchFFocusGained
+
+    private void searchFFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchFFocusLost
+        // TODO add your handling code here:
+        if (searchF.getText().isEmpty()) {
+            searchF.setText("Search Employee Name");
+        }
+    }//GEN-LAST:event_searchFFocusLost
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable empTableL;
     private group22.UI.GradientPanel gradientPanel1;
+    private group22.UI.GradientPanel gradientPanel2;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField searchF;
     // End of variables declaration//GEN-END:variables
 }
