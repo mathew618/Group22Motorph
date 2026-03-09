@@ -1,0 +1,36 @@
+USERNAME,PASSWORD,POSITON,STATUS,LAST NAME,FIRST NAME
+10000,Admin123,Admin,,Admin,Admin
+10001,garcia123,Employee,Regular,Garcia,Manuel III
+10002,lim123,Employee,Regular,Lim,Antonio
+10003,aquino123,Employee,Regular,Aquino,Bianca Sofia
+10004,reyes123,Employee,Regular,Reyes,Isabella
+10005,hernandez123,IT,Regular,Hernandez,Eduard
+10006,villanueva123,HR,Regular,Villanueva,Andrea Mae
+10007,sanjose123,HR,Regular,San Jose,Brad
+10008,romualdez123,Finance,Regular,Romualdez,Alice
+10009,atienza123,Finance,Regular,Atienza,Rosie
+10010,alvaro123,Finance,Regular,Alvaro,Roderick
+10011,salcedo123,Finance,Regular,Salcedo,Anthony
+10012,lopez123,Finance,Regular,Lopez,Josie
+10013,farala123,Finance,Regular,Farala,Martha
+10014,martinez123,Finance,Regular,Martinez,Leila
+10015,romualdez123,Admin,Regular,Romualdez,Fredrick
+10016,mata123,Admin,Regular,Mata,Christian
+10017,deleon123,Admin,Regular,De Leon,Selena
+10018,sanjose123,Employee,Regular,San Jose,Allison
+10019,rosario123,Employee,Regular,Rosario,Cydney
+10020,bautista123,Employee,Regular,Bautista,Mark
+10021,lazaro123,Employee,Probationary,Lazaro,Darlene
+10022,delossantos123,Employee,Probationary,Delos Santos,Kolby
+10023,santos123,Employee,Probationary,Santos,Vella
+10024,delrosario123,Employee,Probationary,Del Rosario,Tomas
+10025,tolentino123,Employee,Probationary,Tolentino,Jacklyn
+10026,gutierrex123,Employee,Probationary,Gutierrez,Percival
+10027,manalaysay123,Employee,Probationary,Manalaysay,Garfield
+10028,villegas123,Employee,Probationary,Villegas,Lizeth
+10029,ramos123,Employee,Probationary,Ramos,Carol
+10030,maceda123,Employee,Probationary,Maceda,Emelia
+10031,aguilar123,Employee,Probationary,Aguilar,Delia
+10032,castro123,Employee,Regular,Castro,John Rafael
+10033,martinez123,Employee,Regular,Martinez,Carlos Ian
+10034,santos123,Employee,Regular,Santos,Beatriz

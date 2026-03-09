@@ -10,37 +10,36 @@ package group22.Model;
  */
 public class Attendance {
     protected String empNumber;
-    protected String empName;
-    protected String Date;
+    protected String lastName;
+    protected String firstName;
+    protected String date;
     protected String logIn;
     protected String logOut;
 
-    public Attendance(String empNumber, String empName, String Date, String logIn, String logOut) {
+    public Attendance(String empNumber,
+                           String lastName,
+                           String firstName,
+                           String date,
+                           String logIn,
+                           String logOut) {
+
         this.empNumber = empNumber;
-        this.empName = empName;
-        this.Date = Date;
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.date = date;
         this.logIn = logIn;
         this.logOut = logOut;
     }
 
-    public String getEmpNumber() {
-        return empNumber;
-    }
+    public String getEmpNumber() { return empNumber; }
 
-    public String getEmpName() {
-        return empName;
-    }
-
-    public String getDate() {
-        return Date;
-    }
-
-    public String getLogIn() {
-        return logIn;
-    }
-
-    public String getLogOut() {
-        return logOut;
-    }
+    public String getLastName() { return lastName; }
     
+    public String getFirstName() { return firstName; }
+    
+    public String getDate() { return date;}
+
+    public String getLogIn() { return logIn; }
+
+    public String getLogOut() { return logOut; }
 }

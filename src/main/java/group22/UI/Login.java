@@ -25,7 +25,7 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         account = new Account();
-        account.loadUsers("login.csv");
+        account.loadUsers("LoginCSV.csv");
     }
 
     /**
@@ -205,7 +205,7 @@ public class Login extends javax.swing.JFrame {
 
     private void LButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LButtonActionPerformed
         // TODO add your handling code here:
-        String name = LName.getText().trim();
+        /*String name = LName.getText().trim();
         String pw = new String(LPassword.getPassword()).trim();
         
         User user = account.login(name, pw);
@@ -219,7 +219,24 @@ public class Login extends javax.swing.JFrame {
             dispose();
         } else {
             JOptionPane.showMessageDialog(this, "Incorrect Username/Password.");
+        }*/
+        
+        String userName = LName.getText().trim();
+        String passWord = new String (LPassword.getPassword()).trim();
+        
+        User user = account.login(userName, passWord);
+
+        if(user == null){
+            JOptionPane.showMessageDialog(this,"Invalid credentials");
+            return;
         }
+
+        Session.start(user);
+        
+        Main dashboard = new Main();
+        dashboard.setVisible(true);
+
+        dispose();
     }//GEN-LAST:event_LButtonActionPerformed
 
     private void LNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LNameActionPerformed
