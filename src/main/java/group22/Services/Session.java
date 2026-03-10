@@ -4,12 +4,8 @@
  */
 package group22.Services;
 
-/**
- *
- * @author mathe
- */
 public class Session {
-    private static User currentUser;
+   private static User currentUser;
 
     public Session() {
     }

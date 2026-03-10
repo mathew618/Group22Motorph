@@ -4,7 +4,7 @@
  */
 package group22.DAO;
 
-import group22.Model.Attendance;
+import group22.Model.AttendData;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -17,29 +17,25 @@ import java.util.List;
  */
 public class AttendCSV {
 
-    public static List<Attendance> read(String filePath) {
-
-        List<Attendance> attendance = new ArrayList<>();
+    public static List<AttendData> read(String filePath) {
+        List<AttendData> attendance = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
-            br.readLine();
+            br.readLine(); // skip header
 
             while ((line = br.readLine()) != null) {
-                String[] d = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
+                String[] d = line.split(",");
 
-                if (d.length < 5) {
-                    System.out.println("Skipping invalid row: " + line);
-                    continue;
-                }
+                if (d.length < 5) continue; // must have 5 columns
 
-                Attendance emp;
-                emp = new Attendance(
-                        d[0], // empNumber
-                        d[1], // empName
-                        d[2], // Date
-                        d[3], // logIn
-                        d[4] // logOut
+                AttendData emp = new AttendData(
+                        d[0].trim(),                  // Employee Number
+                        "",                            // Last Name (not used in table)
+                        d[1].trim(),                   // First Name / Full Name
+                        d[2].trim(),                   // Date
+                        d[3].trim(),                   // Time-In
+                        d[4].trim()                    // Time-Out
                 );
 
                 attendance.add(emp);
