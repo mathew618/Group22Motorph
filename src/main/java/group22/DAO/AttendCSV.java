@@ -23,7 +23,7 @@ public class AttendCSV {
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
-            br.readLine();
+            br.readLine(); // skip header
 
             while ((line = br.readLine()) != null) {
                 String[] d = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
@@ -33,13 +33,13 @@ public class AttendCSV {
                     continue;
                 }
 
-                AttendData emp;
-                emp = new AttendData(
-                        d[0], // empNumber
-                        d[1], // empName
-                        d[2], // Date
-                        d[3], // logIn
-                        d[4] // logOut
+                AttendData emp = new AttendData(
+                        d[0].trim(),                  // Employee Number
+                        "",                            // Last Name (not used in table)
+                        d[1].trim(),                   // First Name / Full Name
+                        d[2].trim(),                   // Date
+                        d[3].trim(),                   // Time-In
+                        d[4].trim()                    // Time-Out
                 );
 
                 attendance.add(emp);

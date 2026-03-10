@@ -4,34 +4,56 @@
  */
 package group22.Tabs;
 
+import group22.DAO.AttendCSV;
 import group22.Services.AttendServ;
 import group22.Services.Data;
+import group22.Services.User;
+import group22.Services.Session;
+import static group22.motorph.MotorPH.ATTENDANCE_CSV_NAME;
+import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
 
-/**
- *
- * @author mathe
- */
 public class Attendance extends javax.swing.JPanel {
-
-    /**
-     * Creates new form Attendance
-     */
-    private final TableRowSorter<TableModel> sorter;
-    private static DefaultTableModel model;
 
     public Attendance() {
         initComponents();
-        model = Data.getAttendModel();
-        attendTableL.setModel(model);
+        // Get current logged-in user
+        User user = Session.getCurrentUser();
 
-        // Enable sorting
-        sorter = new TableRowSorter<>(attendTableL.getModel());
-        attendTableL.setRowSorter(sorter);
+        if (user != null) {
+            empNameA.setText(user.getFirstName() + " " + user.getLastName());
+            empNumA.setText(user.getUsername());
+        }
 
+        // Load all attendance records into memory
+        Data.loadAttendance(ATTENDANCE_CSV_NAME); //CSV path
+        attendTableL.setModel(Data.getAttendModel());
     }
+    
+        // Load attendance into JTable
+    private void loadAttendanceTable() {
+        DefaultTableModel model = (DefaultTableModel) attendTableL.getModel();
+        model.setRowCount(0); // clear table
+
+        List<group22.Model.AttendData> records = Data.getAttendances();
+        User user = Session.getCurrentUser();
+
+        if (user == null) return;
+
+        for (group22.Model.AttendData a : records) {
+            if (a.getEmpNumber().equalsIgnoreCase(user.getUsername())) {
+                String fullName = a.getLastName() + ", " + a.getFirstName();
+                model.addRow(new Object[]{
+                    a.getEmpNumber(),
+                    fullName,
+                    a.getDate(),
+                    a.getLogIn(),
+                    a.getLogOut()
+            });
+        }
+    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -177,20 +199,36 @@ public class Attendance extends javax.swing.JPanel {
 
     private void logINActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logINActionPerformed
         // TODO add your handling code here:
+        User user = Session.getCurrentUser();
+        if (user == null) {
+            JOptionPane.showMessageDialog(this, "No active user session");
+            return;
+        }
+
+        DefaultTableModel model = (DefaultTableModel) attendTableL.getModel();
+        AttendServ.recordLogin(user, model);
         
-        AttendServ.logIn(empNameA, empNumA, model);
+        loadAttendanceTable();
     }//GEN-LAST:event_logINActionPerformed
 
     private void logOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutActionPerformed
         // TODO add your handling code here:
+        User user = Session.getCurrentUser();
+        if (user == null) {
+            JOptionPane.showMessageDialog(this, "No active user session");
+            return;
+        }
+
+        DefaultTableModel model = (DefaultTableModel) attendTableL.getModel();
+        AttendServ.recordLogout(user, model);
         
-        AttendServ.logOut(empNameA, empNumA, model);
+        loadAttendanceTable();
     }//GEN-LAST:event_logOutActionPerformed
 
     private void MonthPickerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MonthPickerActionPerformed
         // TODO add your handling code here:
         
-        AttendServ.monthFilter(MonthPicker, sorter);
+        //AttendServ.monthFilter(MonthPicker, sorter);
     }//GEN-LAST:event_MonthPickerActionPerformed
 
 

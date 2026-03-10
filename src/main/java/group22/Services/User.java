@@ -12,17 +12,22 @@ public class User {
 
     private final String username;
     private final String position;
+    private final String firstName;
+    private final String lastName;
 
-    public User(String username, String position) {
+    public User(String username,
+                       String position,
+                       String firstName,
+                       String lastName) {
+
         this.username = username;
         this.position = position;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPosition() {
-        return position;
-    }
+    public String getUsername() { return username; }
+    public String getPosition() { return position; }
+    public String getFirstName() { return firstName; }
+    public String getLastName() { return lastName; }
 }

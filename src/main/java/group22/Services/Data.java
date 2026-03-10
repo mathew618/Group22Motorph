@@ -8,15 +8,17 @@ import group22.DAO.AttendCSV;
 import group22.DAO.EmpCSV;
 import group22.Model.AttendData;
 import group22.Model.Employee;
-import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import java.util.List;
 
 /**
- *
- * @author mathe
+ * Central data service for MotorPH system.
+ * Loads employees, attendance, salary, and payslip data.
+ * Provides access to table models and employee/attendance lists.
  */
 public class Data {
 
+    // Table models
     private static final DefaultTableModel payslipModel = new DefaultTableModel(
             new Object[]{"Employee Number", "Last Name", "First Name", "Date", "Earnings", "Deductions", "Total"}, 0
     );
@@ -28,62 +30,43 @@ public class Data {
     private static final DefaultTableModel salaryModel = new DefaultTableModel(
             new Object[]{"Employee Number", "Last Name", "First Name", "Basic Salary", "Gross Semi-monthly Rate", "Hourly Rate"}, 0
     );
-    
+
     private static final DefaultTableModel attendModel = new DefaultTableModel(
-            new Object[]{"Employee Number", "Employee", "Date", "Time in", "Time Out"}, 0
+            new Object[]{"Employee Number", "Employee", "Date", "Time In", "Time Out"}, 0
     );
-    
+
+    // Lists
     private static List<Employee> employees;
     private static List<AttendData> attendances;
 
+    // -------------------- EMPLOYEE METHODS --------------------
     public static void loadEmployees(String filePath) {
-
         employees = EmpCSV.read(filePath);
 
         empModel.setRowCount(0);
         salaryModel.setRowCount(0);
 
         for (Employee e : employees) {
-
             // Employee table
             empModel.addRow(new Object[]{
-                e.getEmpNumber(),
-                e.getLastName(),
-                e.getFirstName(),
-                e.getPosition()
+                    e.getEmpNumber(),
+                    e.getLastName(),
+                    e.getFirstName(),
+                    e.getPosition()
             });
 
             // Salary table
             salaryModel.addRow(new Object[]{
-                e.getEmpNumber(),
-                e.getLastName(),
-                e.getFirstName(),
-                e.getBasicSalary(),
-                e.getGrossSemiMonthly(),
-                e.getHourlyRate()
+                    e.getEmpNumber(),
+                    e.getLastName(),
+                    e.getFirstName(),
+                    e.getBasicSalary(),
+                    e.getGrossSemiMonthly(),
+                    e.getHourlyRate()
             });
         }
     }
-    
-    public static void loadAttendance(String filePath) {
 
-        attendances = AttendCSV.read(filePath);
-
-        attendModel.setRowCount(0);
-
-        for (AttendData e : attendances) {
-
-            // Attendance table
-            attendModel.addRow(new Object[]{
-                e.getEmpNumber(),
-                e.getEmpName(),
-                e.getDate(),
-                e.getLogIn(),
-                e.getLogOut()
-            });
-        }
-    }
-    
     public static Employee findEmployee(String name) {
         for (Employee e : getEmployees()) {
             String fullName = e.getLastName() + ", " + e.getFirstName();
@@ -93,11 +76,32 @@ public class Data {
         }
         return null;
     }
-    
+
     public static List<Employee> getEmployees() {
         return employees;
     }
-    
+
+    // -------------------- ATTENDANCE METHODS --------------------
+    public static void loadAttendance(String filePath) {
+        attendances = AttendCSV.read(filePath); // read attendance CSV
+        attendModel.setRowCount(0); // clear model
+
+        for (AttendData a : attendances) {
+            attendModel.addRow(new Object[]{
+                    a.getEmpNumber(),
+                    a.getLastName() + ", " + a.getFirstName(), // combine for Employee column
+                    a.getDate(),
+                    a.getLogIn(),
+                    a.getLogOut()
+            });
+        }
+    }
+
+    public static List<AttendData> getAttendances() {
+        return attendances;
+    }
+
+    // -------------------- TABLE MODELS GETTERS --------------------
     public static DefaultTableModel getPayslipModel() {
         return payslipModel;
     }
@@ -109,14 +113,14 @@ public class Data {
     public static DefaultTableModel getSalaryModel() {
         return salaryModel;
     }
-    
+
     public static DefaultTableModel getAttendModel() {
         return attendModel;
     }
 
-    
-    //Temporary
-    public static void addPaidData(String Emp, String LName, String FName, String Date, String Earn, String Deduct, String Total) {
-        payslipModel.addRow(new Object[]{Emp, LName, FName, Date, Earn, Deduct, Total});
+    // -------------------- TEMPORARY HELPER --------------------
+    public static void addPaidData(String emp, String lastName, String firstName, String date,
+                                   String earnings, String deductions, String total) {
+        payslipModel.addRow(new Object[]{emp, lastName, firstName, date, earnings, deductions, total});
     }
 }
