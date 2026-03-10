@@ -8,7 +8,7 @@ package group22.Model;
  *
  * @author mathe
  */
-public class Attendance {
+public class AttendData {
     protected String empNumber;
     protected String lastName;
     protected String firstName;
@@ -16,7 +16,7 @@ public class Attendance {
     protected String logIn;
     protected String logOut;
 
-    public Attendance(String empNumber,
+    public AttendData(String empNumber,
                            String lastName,
                            String firstName,
                            String date,

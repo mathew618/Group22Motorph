@@ -25,7 +25,7 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         account = new Account();
-        account.loadUsers("LoginCSV.csv");
+        account.loadUsers("Login.csv");
     }
 
     /**

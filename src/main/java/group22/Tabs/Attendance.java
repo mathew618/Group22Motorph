@@ -9,6 +9,7 @@ import group22.Services.AttendServ;
 import group22.Services.Data;
 import group22.Services.User;
 import group22.Services.Session;
+import static group22.motorph.MotorPH.ATTENDANCE_CSV_NAME;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -26,7 +27,7 @@ public class Attendance extends javax.swing.JPanel {
         }
 
         // Load all attendance records into memory
-        Data.loadAttendance("AttendanceData.csv"); //CSV path
+        Data.loadAttendance(ATTENDANCE_CSV_NAME); //CSV path
         attendTableL.setModel(Data.getAttendModel());
     }
     
@@ -35,12 +36,12 @@ public class Attendance extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) attendTableL.getModel();
         model.setRowCount(0); // clear table
 
-        List<group22.Model.Attendance> records = Data.getAttendances();
+        List<group22.Model.AttendData> records = Data.getAttendances();
         User user = Session.getCurrentUser();
 
         if (user == null) return;
 
-        for (group22.Model.Attendance a : records) {
+        for (group22.Model.AttendData a : records) {
             if (a.getEmpNumber().equalsIgnoreCase(user.getUsername())) {
                 String fullName = a.getLastName() + ", " + a.getFirstName();
                 model.addRow(new Object[]{

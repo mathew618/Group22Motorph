@@ -6,7 +6,7 @@ package group22.Services;
 
 import group22.DAO.AttendCSV;
 import group22.DAO.EmpCSV;
-import group22.Model.Attendance;
+import group22.Model.AttendData;
 import group22.Model.Employee;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
@@ -37,7 +37,7 @@ public class Data {
 
     // Lists
     private static List<Employee> employees;
-    private static List<Attendance> attendances;
+    private static List<AttendData> attendances;
 
     // -------------------- EMPLOYEE METHODS --------------------
     public static void loadEmployees(String filePath) {
@@ -86,7 +86,7 @@ public class Data {
         attendances = AttendCSV.read(filePath); // read attendance CSV
         attendModel.setRowCount(0); // clear model
 
-        for (Attendance a : attendances) {
+        for (AttendData a : attendances) {
             attendModel.addRow(new Object[]{
                     a.getEmpNumber(),
                     a.getLastName() + ", " + a.getFirstName(), // combine for Employee column
@@ -97,7 +97,7 @@ public class Data {
         }
     }
 
-    public static List<Attendance> getAttendances() {
+    public static List<AttendData> getAttendances() {
         return attendances;
     }
 

@@ -33,7 +33,7 @@ public class Main extends javax.swing.JFrame {
 
         if (Session.isActive()) {
             User current = Session.getCurrentUser();
-            String username = current.getUsername();
+            String username = current.getFirstName() + ", " + current.getLastName();
             String position = current.getPosition();
 
             fdName.setText(username);
