@@ -17,13 +17,13 @@ public class User {
 
     public User(String username,
                        String position,
-                       String firstName,
-                       String lastName) {
+                       String lastName,
+                       String firstName) {
 
         this.username = username;
         this.position = position;
-        this.firstName = firstName;
         this.lastName = lastName;
+        this.firstName = firstName;
     }
 
     public String getUsername() { return username; }

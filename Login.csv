@@ -1,5 +1,5 @@
 USERNAME,PASSWORD,POSITON,STATUS,LAST NAME,FIRST NAME
-10000,Admin123,Admin,,Admin,Admin
+10000,Admin123,Admin,Admin,Admin,Admin
 10001,garcia123,Employee,Regular,Garcia,Manuel III
 10002,lim123,Employee,Regular,Lim,Antonio
 10003,aquino123,Employee,Regular,Aquino,Bianca Sofia
@@ -36,7 +36,7 @@ USERNAME,PASSWORD,POSITON,STATUS,LAST NAME,FIRST NAME
 10034,santos123,Employee,Regular,Santos,Beatriz
 
 1,1,Admin,Regular,Sario,Fidel David
-2,2,Bread,Employee,Regular,Vercida,Mathew Wilson
+2,2,Employee,Regular,Vercida,Mathew Wilson
 3,MotorPH1234,Admin,Regular,Herrero,Bianca Colleen
 4,MotorPH1234,Admin,Regular,Cang,Elisha Chen
 5,MotorPH1234,Admin,Regular,Baluyot,Sandrine Sophia

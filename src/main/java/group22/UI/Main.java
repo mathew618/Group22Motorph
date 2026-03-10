@@ -33,30 +33,39 @@ public class Main extends javax.swing.JFrame {
 
         if (Session.isActive()) {
             User current = Session.getCurrentUser();
-            String username = current.getUsername();
+            String username = current.getLastName() + ", " + current.getFirstName();
             String position = current.getPosition();
 
             fdName.setText(username);
             fdPos.setText(position);
 
             //btnName, tabName 
-            if (position.equalsIgnoreCase("Admin") || position.equalsIgnoreCase("Test")) {
-                nav.addLabel("MENU");
+            if (position.equalsIgnoreCase("Admin") || position.equalsIgnoreCase("IT")) {
+                nav.addLabel("ADMIN");
                 nav.addBtn("EMPLOYEES", "employees");
                 nav.addBtn("ATTENDANCE", "attendance");
                 nav.addBtn("SALARY", "salary");
+                
+                nav.addLabel("MENU");
+                nav.addBtn("MY PROFILE", "myprofile");
+                nav.addBtn("MY ATTENDANCE", "attendance");
+                nav.addBtn("MY LEAVES", "myleaves");
 
                 nav.addLabel("OTHERS");
                 nav.addBtn("PAYSLIPS", "payslip");
+                nav.addBtn("LEAVE REQUEST", "leaves");
                 nav.addBtn("PAID", "paid");
                 nav.addBtn("SETTINGS", "settings");
             } else {
                 nav.addLabel("MENU");
-                nav.addBtn("ATTENDANCE", "attendance");
+                nav.addBtn("MY PROFILE", "myprofile");
+                nav.addBtn("MY ATTENDANCE", "attendance");
+                nav.addBtn("MY LEAVES", "myleaves");
 
                 nav.addLabel("OTHERS");
-                nav.addBtn("PAID", "paid");
-                nav.addBtn("SETTINGS", "settings");
+                nav.addBtn("LEAVE REQUEST", "leaves");
+                nav.addBtn("MY PAYSLIPS", "mypayslips");
+                nav.addBtn("SETTINGS", "mysettings");
             }
 
             nav.addLogout(() -> {
@@ -99,6 +108,11 @@ public class Main extends javax.swing.JFrame {
         salary1 = new group22.Tabs.Salary();
         paid1 = new group22.Tabs.Paid();
         payslips1 = new group22.Tabs.Payslips();
+        myProfile1 = new group22.Tabs.MyProfile();
+        mySettings1 = new group22.Tabs.MySettings();
+        myLeaves1 = new group22.Tabs.MyLeaves();
+        leaves1 = new group22.Tabs.Leaves();
+        myPayslips1 = new group22.Tabs.MyPayslips();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(810, 460));
@@ -247,6 +261,11 @@ public class Main extends javax.swing.JFrame {
         Tabs.add(salary1, "salary");
         Tabs.add(paid1, "paid");
         Tabs.add(payslips1, "payslip");
+        Tabs.add(myProfile1, "myprofile");
+        Tabs.add(mySettings1, "mysettings");
+        Tabs.add(myLeaves1, "myleaves");
+        Tabs.add(leaves1, "leaves");
+        Tabs.add(myPayslips1, "mypayslips");
 
         Scroll.setViewportView(Tabs);
 
@@ -360,6 +379,11 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private group22.Tabs.Leaves leaves1;
+    private group22.Tabs.MyLeaves myLeaves1;
+    private group22.Tabs.MyPayslips myPayslips1;
+    private group22.Tabs.MyProfile myProfile1;
+    private group22.Tabs.MySettings mySettings1;
     private group22.Tabs.Paid paid1;
     private javax.swing.JButton paidBtn;
     private javax.swing.JButton payBtn;
