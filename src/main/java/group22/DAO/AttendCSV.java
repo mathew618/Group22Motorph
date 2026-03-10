@@ -4,7 +4,7 @@
  */
 package group22.DAO;
 
-import group22.Model.Attendance;
+import group22.Model.AttendData;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -17,9 +17,9 @@ import java.util.List;
  */
 public class AttendCSV {
 
-    public static List<Attendance> read(String filePath) {
+    public static List<AttendData> read(String filePath) {
 
-        List<Attendance> attendance = new ArrayList<>();
+        List<AttendData> attendance = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
@@ -33,8 +33,8 @@ public class AttendCSV {
                     continue;
                 }
 
-                Attendance emp;
-                emp = new Attendance(
+                AttendData emp;
+                emp = new AttendData(
                         d[0], // empNumber
                         d[1], // empName
                         d[2], // Date
