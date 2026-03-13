@@ -73,19 +73,17 @@ public class Employees extends javax.swing.JPanel {
     private void initComponents() {
 
         gradientPanel1 = new group22.UI.GradientPanel();
-        jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         empTableL = new javax.swing.JTable();
         viewEmp = new javax.swing.JButton();
         addEmpBtn = new javax.swing.JButton();
         removeEmpBtn = new javax.swing.JButton();
         searchF = new javax.swing.JTextField();
+        jPanel15 = new javax.swing.JPanel();
+        jLabel21 = new javax.swing.JLabel();
 
         gradientPanel1.setColor1(new java.awt.Color(228, 255, 255));
         gradientPanel1.setColor2(new java.awt.Color(102, 204, 255));
-
-        jLabel5.setFont(new java.awt.Font("Bahnschrift", 1, 24)); // NOI18N
-        jLabel5.setText("• EMPLOYEES");
 
         empTableL.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -130,44 +128,63 @@ public class Employees extends javax.swing.JPanel {
             }
         });
 
+        jPanel15.setBackground(new java.awt.Color(0, 0, 139));
+
+        jLabel21.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel21.setFont(new java.awt.Font("Bahnschrift", 1, 24)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel21.setText("• MotorPH EMPLOYEES");
+
+        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
+        jPanel15.setLayout(jPanel15Layout);
+        jPanel15Layout.setHorizontalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(jLabel21)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel15Layout.setVerticalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
+                .addContainerGap(9, Short.MAX_VALUE)
+                .addComponent(jLabel21)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout gradientPanel1Layout = new javax.swing.GroupLayout(gradientPanel1);
         gradientPanel1.setLayout(gradientPanel1Layout);
         gradientPanel1Layout.setHorizontalGroup(
             gradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(gradientPanel1Layout.createSequentialGroup()
-                .addGroup(gradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(gradientPanel1Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(gradientPanel1Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addGroup(gradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, gradientPanel1Layout.createSequentialGroup()
-                                .addComponent(viewEmp)
-                                .addGap(18, 18, 18)
-                                .addComponent(searchF, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
-                                .addGap(30, 30, 30)
-                                .addComponent(addEmpBtn)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(removeEmpBtn)))))
-                .addGap(15, 15, 15))
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(gradientPanel1Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(viewEmp)
+                .addGap(18, 18, 18)
+                .addComponent(searchF, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
+                .addComponent(addEmpBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(removeEmpBtn)
+                .addGap(16, 16, 16))
+            .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         gradientPanel1Layout.setVerticalGroup(
             gradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(gradientPanel1Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(gradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19)
+                .addGroup(gradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(viewEmp)
                     .addComponent(searchF, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(gradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(viewEmp)
-                        .addComponent(addEmpBtn)
-                        .addComponent(removeEmpBtn)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                .addGap(41, 41, 41))
+                    .addComponent(addEmpBtn)
+                    .addComponent(removeEmpBtn))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -250,7 +267,8 @@ public class Employees extends javax.swing.JPanel {
     private javax.swing.JButton addEmpBtn;
     private javax.swing.JTable empTableL;
     private group22.UI.GradientPanel gradientPanel1;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JPanel jPanel15;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton removeEmpBtn;
     private javax.swing.JTextField searchF;
