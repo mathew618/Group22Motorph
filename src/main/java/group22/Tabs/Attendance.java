@@ -7,7 +7,7 @@ package group22.Tabs;
 import group22.DAO.AttendCSV;
 import group22.Services.AttendServ;
 import group22.Services.Data;
-import group22.Services.User;
+import group22.Model.User;
 import group22.Services.Session;
 import static group22.motorph.MotorPH.ATTENDANCE_CSV_NAME;
 import java.util.List;

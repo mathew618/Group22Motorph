@@ -5,7 +5,7 @@
 package group22.Tabs;
 
 import group22.Services.Session;
-import group22.Services.User;
+import group22.Model.User;
 
 /**
  *
@@ -24,6 +24,7 @@ public class MyProfile extends javax.swing.JPanel {
         if (user != null) {
             empName.setText(user.getFirstName() + " " + user.getLastName());
             position.setText(user.getPosition());
+            email.setText(user.getFirstName() + user.getLastName() + "@motor.ph");
         }
     }
 
@@ -52,6 +53,9 @@ public class MyProfile extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         empName = new javax.swing.JLabel();
         position = new javax.swing.JLabel();
+        email = new javax.swing.JLabel();
+        address = new javax.swing.JLabel();
+        phone = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -149,6 +153,15 @@ public class MyProfile extends javax.swing.JPanel {
 
         position.setText("Employee Position");
 
+        email.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        email.setText("Employee Email");
+
+        address.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        address.setText("Employee Address");
+
+        phone.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        phone.setText("Employee Number");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -156,10 +169,11 @@ public class MyProfile extends javax.swing.JPanel {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(phone, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel7)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
@@ -171,8 +185,16 @@ public class MyProfile extends javax.swing.JPanel {
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(18, 18, 18)
-                                .addComponent(position, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(177, Short.MAX_VALUE))
+                                .addComponent(position, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addGap(21, 21, 21)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(address, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,11 +213,17 @@ public class MyProfile extends javax.swing.JPanel {
                 .addGap(10, 10, 10)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(email))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(address))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel8)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(phone))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
@@ -298,6 +326,8 @@ public class MyProfile extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel address;
+    private javax.swing.JLabel email;
     private javax.swing.JLabel empName;
     private group22.UI.GradientPanel gradientPanel2;
     private group22.UI.GradientPanel gradientPanel3;
@@ -319,6 +349,7 @@ public class MyProfile extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JLabel phone;
     private javax.swing.JLabel position;
     // End of variables declaration//GEN-END:variables
 }

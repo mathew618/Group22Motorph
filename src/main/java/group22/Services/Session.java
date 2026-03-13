@@ -4,6 +4,8 @@
  */
 package group22.Services;
 
+import group22.Model.User;
+
 public class Session {
    private static User currentUser;
 

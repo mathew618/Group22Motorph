@@ -4,6 +4,7 @@
  */
 package group22.Services;
 
+import group22.Model.User;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;

@@ -4,8 +4,8 @@
  */
 package group22.UI;
 
+import group22.Model.User;
 import group22.Services.Session;
-import group22.Services.User;
 import java.awt.CardLayout;
 
 /**

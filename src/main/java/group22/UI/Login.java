@@ -6,7 +6,7 @@ package group22.UI;
 
 import group22.Services.Account;
 import group22.Services.Session;
-import group22.Services.User;
+import group22.Model.User;
 import javax.swing.JOptionPane;
 
 /**
@@ -24,8 +24,7 @@ public class Login extends javax.swing.JFrame {
     
     public Login() {
         initComponents();
-        account = new Account();
-        account.loadUsers("Login.csv");
+        account = new Account("Login.csv");
     }
 
     /**
@@ -205,22 +204,6 @@ public class Login extends javax.swing.JFrame {
 
     private void LButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LButtonActionPerformed
         // TODO add your handling code here:
-        /*String name = LName.getText().trim();
-        String pw = new String(LPassword.getPassword()).trim();
-        
-        User user = account.login(name, pw);
-        
-        if (user != null) {
-            Session.start(user);
-            
-            Main n = new Main();
-            n.setVisible(true);
-
-            dispose();
-        } else {
-            JOptionPane.showMessageDialog(this, "Incorrect Username/Password.");
-        }*/
-        
         String userName = LName.getText().trim();
         String passWord = new String (LPassword.getPassword()).trim();
         
