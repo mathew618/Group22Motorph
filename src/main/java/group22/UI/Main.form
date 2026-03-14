@@ -341,7 +341,7 @@
                     </Constraint>
                   </Constraints>
                 </Component>
-                <Component class="group22.Tabs.Settings" name="settings1">
+                <Component class="group22.Tabs.SystemSettings" name="settings1">
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
                       <CardConstraints cardName="settings"/>
@@ -383,7 +383,7 @@
                     </Constraint>
                   </Constraints>
                 </Component>
-                <Component class="group22.Tabs.MySettings" name="mySettings1">
+                <Component class="group22.Tabs.Settings" name="mySettings1">
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
                       <CardConstraints cardName="mysettings"/>
@@ -408,6 +408,13 @@
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
                       <CardConstraints cardName="mypayslips"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="group22.Tabs.SupportRequests" name="supportRequests1">
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                      <CardConstraints cardName="supportreq"/>
                     </Constraint>
                   </Constraints>
                 </Component>

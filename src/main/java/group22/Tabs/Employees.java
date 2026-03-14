@@ -158,7 +158,7 @@ public class Employees extends javax.swing.JPanel {
             gradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(gradientPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE)
+                .addComponent(jScrollPane1)
                 .addContainerGap())
             .addGroup(gradientPanel1Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
@@ -183,8 +183,8 @@ public class Employees extends javax.swing.JPanel {
                     .addComponent(addEmpBtn)
                     .addComponent(removeEmpBtn))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
+                .addGap(46, 46, 46))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

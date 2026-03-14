@@ -25,7 +25,7 @@ public class Main extends javax.swing.JFrame {
         initComponents();
         greg = (CardLayout) (Tabs.getLayout());
 
-        Scroll.getVerticalScrollBar().setUnitIncrement(16);
+        Scrollbar.apply(Scroll);
 
         jPanel3.removeAll();
 
@@ -45,6 +45,7 @@ public class Main extends javax.swing.JFrame {
                 nav.addBtn("EMPLOYEES", "employees");
                 nav.addBtn("ATTENDANCE", "attendance");
                 nav.addBtn("SALARY", "salary");
+                nav.addBtn("REQUESTS", "supportreq");
                 
                 nav.addLabel("MENU");
                 nav.addBtn("MY PROFILE", "myprofile");
@@ -103,16 +104,17 @@ public class Main extends javax.swing.JFrame {
         Scroll = new javax.swing.JScrollPane();
         Tabs = new javax.swing.JPanel();
         employees1 = new group22.Tabs.Employees();
-        settings1 = new group22.Tabs.Settings();
+        settings1 = new group22.Tabs.SystemSettings();
         attendance1 = new group22.Tabs.Attendance();
         salary1 = new group22.Tabs.Salary();
         paid1 = new group22.Tabs.Paid();
         payslips1 = new group22.Tabs.Payslips();
         myProfile1 = new group22.Tabs.MyProfile();
-        mySettings1 = new group22.Tabs.MySettings();
+        mySettings1 = new group22.Tabs.Settings();
         myLeaves1 = new group22.Tabs.MyLeaves();
         leaves1 = new group22.Tabs.Leaves();
         myPayslips1 = new group22.Tabs.MyPayslips();
+        supportRequests1 = new group22.Tabs.SupportRequests();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(810, 460));
@@ -266,6 +268,7 @@ public class Main extends javax.swing.JFrame {
         Tabs.add(myLeaves1, "myleaves");
         Tabs.add(leaves1, "leaves");
         Tabs.add(myPayslips1, "mypayslips");
+        Tabs.add(supportRequests1, "supportreq");
 
         Scroll.setViewportView(Tabs);
 
@@ -383,14 +386,15 @@ public class Main extends javax.swing.JFrame {
     private group22.Tabs.MyLeaves myLeaves1;
     private group22.Tabs.MyPayslips myPayslips1;
     private group22.Tabs.MyProfile myProfile1;
-    private group22.Tabs.MySettings mySettings1;
+    private group22.Tabs.Settings mySettings1;
     private group22.Tabs.Paid paid1;
     private javax.swing.JButton paidBtn;
     private javax.swing.JButton payBtn;
     private group22.Tabs.Payslips payslips1;
     private javax.swing.JButton salBtn;
     private group22.Tabs.Salary salary1;
-    private group22.Tabs.Settings settings1;
+    private group22.Tabs.SystemSettings settings1;
     private javax.swing.JButton settingsBtn;
+    private group22.Tabs.SupportRequests supportRequests1;
     // End of variables declaration//GEN-END:variables
 }

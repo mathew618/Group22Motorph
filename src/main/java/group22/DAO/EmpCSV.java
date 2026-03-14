@@ -125,7 +125,7 @@ public class EmpCSV {
         }
     }
 
-    private static String escapeCSV(String value) {
+    protected static String escapeCSV(String value) {
         if (value == null) {
             return "";
         }

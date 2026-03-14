@@ -1,26 +1,31 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package group22.Tabs;
+package group22.UI;
 
+import group22.DAO.RequestCSV;
+import group22.Model.User;
 import group22.Services.Data;
-import group22.DAO.TempCSV;
-import static group22.motorph.MotorPH.CSV_NAME;
-import static group22.motorph.MotorPH.TEMP_CSV_NAME;
-import javax.swing.JOptionPane;
+import group22.Services.Session;
+import static group22.motorph.MotorPH.REQUESTS_CSV_NAME;
 
 /**
  *
  * @author mathe
  */
-public class ContactSupport extends javax.swing.JPanel {
+public class ContactSupport extends javax.swing.JFrame {
+    
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ContactSupport.class.getName());
 
     /**
-     * Creates new form Settings
+     * Creates new form ContactSupport
      */
     public ContactSupport() {
         initComponents();
+        User user = Session.getCurrentUser();
+        
+        empNum.setText(user.getUsername());
     }
 
     /**
@@ -32,8 +37,6 @@ public class ContactSupport extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollBar1 = new javax.swing.JScrollBar();
-        jLabel6 = new javax.swing.JLabel();
         gradientPanel1 = new group22.UI.GradientPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -41,20 +44,17 @@ public class ContactSupport extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        empNum = new javax.swing.JTextPane();
+        category = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        toEmp = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        textArea1 = new java.awt.TextArea();
-        button1 = new java.awt.Button();
-        button2 = new java.awt.Button();
+        description = new java.awt.TextArea();
+        cancelBtn = new java.awt.Button();
+        submitBtn = new java.awt.Button();
         jLabel7 = new javax.swing.JLabel();
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel6.setText("Employee Num:");
-
-        setPreferredSize(new java.awt.Dimension(631, 430));
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         gradientPanel1.setBackground(new java.awt.Color(204, 255, 204));
         gradientPanel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -92,30 +92,32 @@ public class ContactSupport extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Employee Num:");
 
-        jScrollPane1.setViewportView(jTextPane1);
+        empNum.setEditable(false);
+        jScrollPane1.setViewportView(empNum);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "General Set-up", "Attendance", "Payroll", "Integrations", "Report & Analytics", "FAQs", "Troubleshooting", "Other", " " }));
-        jComboBox1.addActionListener(this::jComboBox1ActionPerformed);
+        category.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "General Set-up", "Attendance", "Payroll", "Integrations", "Report & Analytics", "FAQs", "Troubleshooting", "Other", " " }));
+        category.addActionListener(this::categoryActionPerformed);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText("Category:");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "IT Head", "Human Resources", "Payroll Officer" }));
-        jComboBox2.addActionListener(this::jComboBox2ActionPerformed);
+        toEmp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "IT Head", "Human Resources", "Payroll Officer" }));
+        toEmp.addActionListener(this::toEmpActionPerformed);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("Description:");
 
-        button1.setBackground(new java.awt.Color(204, 204, 204));
-        button1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        button1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        button1.setLabel("Cancel");
-        button1.addActionListener(this::button1ActionPerformed);
+        cancelBtn.setBackground(new java.awt.Color(204, 204, 204));
+        cancelBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        cancelBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        cancelBtn.setLabel("Cancel");
+        cancelBtn.addActionListener(this::cancelBtnActionPerformed);
 
-        button2.setBackground(new java.awt.Color(255, 255, 204));
-        button2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        button2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        button2.setLabel("Submit");
+        submitBtn.setBackground(new java.awt.Color(255, 255, 204));
+        submitBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        submitBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        submitBtn.setLabel("Submit");
+        submitBtn.addActionListener(this::submitBtnActionPerformed);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel7.setText("Submit a ticket");
@@ -128,12 +130,12 @@ public class ContactSupport extends javax.swing.JPanel {
                 .addGap(40, 40, 40)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(submitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel4)
-                        .addComponent(textArea1, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel4Layout.createSequentialGroup()
                             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel2)
@@ -142,15 +144,15 @@ public class ContactSupport extends javax.swing.JPanel {
                             .addGap(88, 88, 88)
                             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jScrollPane1)
-                                .addComponent(jComboBox1, 0, 251, Short.MAX_VALUE)
-                                .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(category, 0, 251, Short.MAX_VALUE)
+                                .addComponent(toEmp, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addComponent(jLabel7)))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel7)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,23 +161,21 @@ public class ContactSupport extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(toEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(category, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(textArea1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(button1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(button2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cancelBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(submitBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27))
         );
-
-        jComboBox1.getAccessibleContext().setAccessibleName("");
 
         javax.swing.GroupLayout gradientPanel1Layout = new javax.swing.GroupLayout(gradientPanel1);
         gradientPanel1.setLayout(gradientPanel1Layout);
@@ -196,50 +196,90 @@ public class ContactSupport extends javax.swing.JPanel {
                 .addGap(46, 46, 46))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(gradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 631, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(gradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 605, Short.MAX_VALUE)
+            .addComponent(gradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
         );
+
+        pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void categoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_categoryActionPerformed
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+    private void toEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toEmpActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
+    }//GEN-LAST:event_toEmpActionPerformed
 
-    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         // TODO add your handling code here:
-        //water
-    }//GEN-LAST:event_button1ActionPerformed
+        dispose();
+    }//GEN-LAST:event_cancelBtnActionPerformed
 
+    private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
+        // TODO add your handling code here:
+        RequestCSV.addRequests(REQUESTS_CSV_NAME,
+                empNum.getText(),
+                (String) toEmp.getSelectedItem(),
+                (String) category.getSelectedItem(),
+                description.getText().replace("\n", "\\n").replace("\r", "")
+                
+        );
+        
+        Data.loadRequest(REQUESTS_CSV_NAME);
+        
+        dispose();
+    }//GEN-LAST:event_submitBtnActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
+            logger.log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(() -> new ContactSupport().setVisible(true));
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Button button1;
-    private java.awt.Button button2;
+    private java.awt.Button cancelBtn;
+    private javax.swing.JComboBox<String> category;
+    private java.awt.TextArea description;
+    private javax.swing.JTextPane empNum;
     private group22.UI.GradientPanel gradientPanel1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextPane jTextPane1;
-    private java.awt.TextArea textArea1;
+    private java.awt.Button submitBtn;
+    private javax.swing.JComboBox<String> toEmp;
     // End of variables declaration//GEN-END:variables
 }

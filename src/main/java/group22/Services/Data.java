@@ -6,8 +6,10 @@ package group22.Services;
 
 import group22.DAO.AttendCSV;
 import group22.DAO.EmpCSV;
+import group22.DAO.RequestCSV;
 import group22.Model.AttendData;
 import group22.Model.Employee;
+import group22.Model.Request;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
 
@@ -34,10 +36,15 @@ public class Data {
     private static final DefaultTableModel attendModel = new DefaultTableModel(
             new Object[]{"Employee Number", "Employee", "Date", "Time In", "Time Out"}, 0
     );
+    
+    private static final DefaultTableModel requestModel = new DefaultTableModel(
+            new Object[]{"Employee Number", "TO", "Category", "Description"}, 0
+    );
 
     // Lists
     private static List<Employee> employees;
     private static List<AttendData> attendances;
+    private static List<Request> requests;
 
     // -------------------- EMPLOYEE METHODS --------------------
     public static void loadEmployees(String filePath) {
@@ -100,6 +107,25 @@ public class Data {
     public static List<AttendData> getAttendances() {
         return attendances;
     }
+    
+    // -------------------- REQUEST METHODS --------------------
+    public static void loadRequest(String filePath) {
+        requests = RequestCSV.read(filePath); // read attendance CSV
+        requestModel.setRowCount(0); // clear model
+
+        for (Request r : requests) {
+            requestModel.addRow(new Object[]{
+                    r.getUsername(),
+                    r.getRole(),
+                    r.getCategory(),
+                    r.getDescription()
+            });
+        }
+    }
+    
+    public static List<Request> getRequests() {
+        return requests;
+    }
 
     // -------------------- TABLE MODELS GETTERS --------------------
     public static DefaultTableModel getPayslipModel() {
@@ -116,6 +142,10 @@ public class Data {
 
     public static DefaultTableModel getAttendModel() {
         return attendModel;
+    }
+
+    public static DefaultTableModel getRequestModel() {
+        return requestModel;
     }
 
     // -------------------- TEMPORARY HELPER --------------------
