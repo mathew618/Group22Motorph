@@ -7,6 +7,7 @@ package group22.Tabs;
 import group22.Services.Data;
 import group22.Services.EmpSalary;
 import group22.Model.Employee;
+import group22.UI.Scrollbar;
 import static group22.motorph.MotorPH.TEMP_CSV_NAME;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
@@ -32,7 +33,7 @@ public class Payslips extends javax.swing.JPanel {
     public Payslips() {
         Data.loadEmployees(TEMP_CSV_NAME);
         initComponents();
-        PsScroll.getVerticalScrollBar().setUnitIncrement(16);
+        Scrollbar.apply(PsScroll);
 
         currentSalary = new EmpSalary();
 

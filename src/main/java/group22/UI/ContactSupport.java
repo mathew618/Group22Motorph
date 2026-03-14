@@ -9,6 +9,7 @@ import group22.Model.User;
 import group22.Services.Data;
 import group22.Services.Session;
 import static group22.motorph.MotorPH.REQUESTS_CSV_NAME;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -26,6 +27,11 @@ public class ContactSupport extends javax.swing.JFrame {
         User user = Session.getCurrentUser();
         
         empNum.setText(user.getUsername());
+    }
+    
+    public static String check(String desc) {
+        if (desc == null || desc.trim().isEmpty()) return "Description cannot be empty.";
+        return null;
     }
 
     /**
@@ -226,6 +232,12 @@ public class ContactSupport extends javax.swing.JFrame {
 
     private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
         // TODO add your handling code here:
+        String errorMessage = check(description.getText());
+        if (errorMessage != null) {
+            JOptionPane.showMessageDialog(this, errorMessage);
+            return;
+        }
+        
         RequestCSV.addRequests(REQUESTS_CSV_NAME,
                 empNum.getText(),
                 (String) toEmp.getSelectedItem(),

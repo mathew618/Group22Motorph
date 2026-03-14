@@ -23,7 +23,9 @@ public class MyLeaves extends javax.swing.JPanel {
         
         User user = Session.getCurrentUser();
         
-        Data.loadMyLeaves(user.getUsername());
+        if (user != null) {
+            Data.loadMyLeaves(user.getUsername());
+        }
         
         leaveTable.setModel(Data.getMyLeavesModel());
     }

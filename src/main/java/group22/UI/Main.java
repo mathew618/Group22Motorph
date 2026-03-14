@@ -17,7 +17,7 @@ public class Main extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Main.class.getName());
 
     /**
-     * Creates new form Main
+     * Creates new form Main [810, 460]
      */
     CardLayout greg;
 
@@ -109,14 +109,14 @@ public class Main extends javax.swing.JFrame {
         payslips1 = new group22.Tabs.Payslips();
         myProfile1 = new group22.Tabs.MyProfile();
         mySettings1 = new group22.Tabs.Settings();
-        myLeaves1 = new group22.Tabs.MyLeaves();
         myPayslips1 = new group22.Tabs.MyPayslips();
         supportRequests1 = new group22.Tabs.SupportRequests();
         myAttendance1 = new group22.Tabs.MyAttendance();
         leaves2 = new group22.Tabs.Leaves();
+        myLeaves2 = new group22.Tabs.MyLeaves();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(810, 460));
+        setMinimumSize(new java.awt.Dimension(830, 660));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 204));
         jPanel1.setPreferredSize(new java.awt.Dimension(768, 420));
@@ -264,11 +264,11 @@ public class Main extends javax.swing.JFrame {
         Tabs.add(payslips1, "payslip");
         Tabs.add(myProfile1, "myprofile");
         Tabs.add(mySettings1, "mysettings");
-        Tabs.add(myLeaves1, "myleaves");
         Tabs.add(myPayslips1, "mypayslips");
         Tabs.add(supportRequests1, "supportreq");
         Tabs.add(myAttendance1, "myattendance");
         Tabs.add(leaves2, "leaves");
+        Tabs.add(myLeaves2, "myleaves");
 
         Scroll.setViewportView(Tabs);
 
@@ -384,7 +384,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private group22.Tabs.Leaves leaves2;
     private group22.Tabs.MyAttendance myAttendance1;
-    private group22.Tabs.MyLeaves myLeaves1;
+    private group22.Tabs.MyLeaves myLeaves2;
     private group22.Tabs.MyPayslips myPayslips1;
     private group22.Tabs.MyProfile myProfile1;
     private group22.Tabs.Settings mySettings1;

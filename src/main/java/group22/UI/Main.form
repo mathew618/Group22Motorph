@@ -4,7 +4,7 @@
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[810, 460]"/>
+      <Dimension value="[830, 660]"/>
     </Property>
   </Properties>
   <SyntheticProperties>
@@ -390,13 +390,6 @@
                     </Constraint>
                   </Constraints>
                 </Component>
-                <Component class="group22.Tabs.MyLeaves" name="myLeaves1">
-                  <Constraints>
-                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-                      <CardConstraints cardName="myleaves"/>
-                    </Constraint>
-                  </Constraints>
-                </Component>
                 <Component class="group22.Tabs.MyPayslips" name="myPayslips1">
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
@@ -422,6 +415,13 @@
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
                       <CardConstraints cardName="leaves"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="group22.Tabs.MyLeaves" name="myLeaves2">
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                      <CardConstraints cardName="myleaves"/>
                     </Constraint>
                   </Constraints>
                 </Component>
