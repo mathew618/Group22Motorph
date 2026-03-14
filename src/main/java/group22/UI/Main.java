@@ -40,34 +40,30 @@ public class Main extends javax.swing.JFrame {
             fdPos.setText(position);
 
             //btnName, tabName 
-            if (position.equalsIgnoreCase("Admin") || position.equalsIgnoreCase("IT")) {
+            nav.addLabel("MENU");
+            nav.addBtn("MY PROFILE", "myprofile");
+            nav.addBtn("MY ATTENDANCE", "myattendance");
+            nav.addBtn("MY LEAVES", "myleaves");
+            
+            if (position.equalsIgnoreCase("Admin")) {
                 nav.addLabel("ADMIN");
                 nav.addBtn("EMPLOYEES", "employees");
                 nav.addBtn("ATTENDANCE", "attendance");
                 nav.addBtn("SALARY", "salary");
-                nav.addBtn("REQUESTS", "supportreq");
-                
-                nav.addLabel("MENU");
-                nav.addBtn("MY PROFILE", "myprofile");
-                nav.addBtn("MY ATTENDANCE", "attendance");
-                nav.addBtn("MY LEAVES", "myleaves");
-
-                nav.addLabel("OTHERS");
                 nav.addBtn("PAYSLIPS", "payslip");
-                nav.addBtn("LEAVE REQUEST", "leaves");
                 nav.addBtn("PAID", "paid");
-                nav.addBtn("SETTINGS", "settings");
-            } else {
-                nav.addLabel("MENU");
-                nav.addBtn("MY PROFILE", "myprofile");
-                nav.addBtn("MY ATTENDANCE", "attendance");
-                nav.addBtn("MY LEAVES", "myleaves");
-
-                nav.addLabel("OTHERS");
-                nav.addBtn("LEAVE REQUEST", "leaves");
-                nav.addBtn("MY PAYSLIPS", "mypayslips");
-                nav.addBtn("SETTINGS", "mysettings");
             }
+            
+            if (position.equalsIgnoreCase("IT")) {
+                nav.addLabel("IT");
+                nav.addBtn("REQUESTS", "supportreq");
+                nav.addBtn("SYSTEM", "settings");
+            }
+
+            nav.addLabel("OTHERS");
+            nav.addBtn("LEAVE REQUEST", "leaves");
+            nav.addBtn("MY PAYSLIPS", "mypayslips");
+            nav.addBtn("SETTINGS", "mysettings");
 
             nav.addLogout(() -> {
                 Session.end();
@@ -115,6 +111,7 @@ public class Main extends javax.swing.JFrame {
         leaves1 = new group22.Tabs.Leaves();
         myPayslips1 = new group22.Tabs.MyPayslips();
         supportRequests1 = new group22.Tabs.SupportRequests();
+        myAttendance1 = new group22.Tabs.MyAttendance();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(810, 460));
@@ -269,6 +266,7 @@ public class Main extends javax.swing.JFrame {
         Tabs.add(leaves1, "leaves");
         Tabs.add(myPayslips1, "mypayslips");
         Tabs.add(supportRequests1, "supportreq");
+        Tabs.add(myAttendance1, "myattendance");
 
         Scroll.setViewportView(Tabs);
 
@@ -383,6 +381,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private group22.Tabs.Leaves leaves1;
+    private group22.Tabs.MyAttendance myAttendance1;
     private group22.Tabs.MyLeaves myLeaves1;
     private group22.Tabs.MyPayslips myPayslips1;
     private group22.Tabs.MyProfile myProfile1;

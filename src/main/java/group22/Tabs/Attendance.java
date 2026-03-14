@@ -4,56 +4,17 @@
  */
 package group22.Tabs;
 
-import group22.DAO.AttendCSV;
-import group22.Services.AttendServ;
 import group22.Services.Data;
-import group22.Model.User;
-import group22.Services.Session;
-import static group22.motorph.MotorPH.ATTENDANCE_CSV_NAME;
-import java.util.List;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 public class Attendance extends javax.swing.JPanel {
 
     public Attendance() {
         initComponents();
-        // Get current logged-in user
-        User user = Session.getCurrentUser();
-
-        if (user != null) {
-            empNameA.setText(user.getFirstName() + " " + user.getLastName());
-            empNumA.setText(user.getUsername());
-        }
-
+        
         // Load all attendance records into memory
-        Data.loadAttendance(ATTENDANCE_CSV_NAME); //CSV path
         attendTableL.setModel(Data.getAttendModel());
+        
     }
-    
-        // Load attendance into JTable
-    private void loadAttendanceTable() {
-        DefaultTableModel model = (DefaultTableModel) attendTableL.getModel();
-        model.setRowCount(0); // clear table
-
-        List<group22.Model.AttendData> records = Data.getAttendances();
-        User user = Session.getCurrentUser();
-
-        if (user == null) return;
-
-        for (group22.Model.AttendData a : records) {
-            if (a.getEmpNumber().equalsIgnoreCase(user.getUsername())) {
-                String fullName = a.getLastName() + ", " + a.getFirstName();
-                model.addRow(new Object[]{
-                    a.getEmpNumber(),
-                    fullName,
-                    a.getDate(),
-                    a.getLogIn(),
-                    a.getLogOut()
-            });
-        }
-    }
-}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -65,29 +26,14 @@ public class Attendance extends javax.swing.JPanel {
     private void initComponents() {
 
         gradientPanel1 = new group22.UI.GradientPanel();
-        empNameA = new javax.swing.JTextField();
-        logIN = new javax.swing.JButton();
-        logOut = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         attendTableL = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
         MonthPicker = new javax.swing.JComboBox<>();
-        empNumA = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
 
         gradientPanel1.setColor1(new java.awt.Color(228, 255, 255));
         gradientPanel1.setColor2(new java.awt.Color(102, 204, 255));
-
-        empNameA.setBackground(new java.awt.Color(221, 238, 255));
-        empNameA.addActionListener(this::empNameAActionPerformed);
-
-        logIN.setText("Log-In");
-        logIN.addActionListener(this::logINActionPerformed);
-
-        logOut.setText("Log-Out");
-        logOut.addActionListener(this::logOutActionPerformed);
 
         attendTableL.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -110,14 +56,8 @@ public class Attendance extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(attendTableL);
 
-        jLabel1.setText("Enter Employee Name:");
-
         MonthPicker.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" }));
         MonthPicker.addActionListener(this::MonthPickerActionPerformed);
-
-        empNumA.setToolTipText("");
-
-        jLabel2.setText("Enter Employee Number:");
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 139));
 
@@ -153,52 +93,19 @@ public class Attendance extends javax.swing.JPanel {
                 .addContainerGap())
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(gradientPanel1Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addGroup(gradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(empNameA, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(12, 12, 12)
-                .addGroup(gradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2)
-                    .addComponent(empNumA, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(gradientPanel1Layout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(logIN)
-                .addGroup(gradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(gradientPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(MonthPicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))
-                    .addGroup(gradientPanel1Layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(logOut)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(510, Short.MAX_VALUE)
+                .addComponent(MonthPicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
         gradientPanel1Layout.setVerticalGroup(
             gradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(gradientPanel1Layout.createSequentialGroup()
-                .addGroup(gradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(gradientPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(gradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addGap(26, 26, 26))
-                    .addGroup(gradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(empNameA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(empNumA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(gradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(gradientPanel1Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addGroup(gradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(logIN)
-                            .addComponent(logOut)))
-                    .addComponent(MonthPicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
-                .addGap(50, 50, 50))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(MonthPicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)
+                .addGap(41, 41, 41))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -213,38 +120,6 @@ public class Attendance extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void empNameAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empNameAActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_empNameAActionPerformed
-
-    private void logINActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logINActionPerformed
-        // TODO add your handling code here:
-        User user = Session.getCurrentUser();
-        if (user == null) {
-            JOptionPane.showMessageDialog(this, "No active user session");
-            return;
-        }
-
-        DefaultTableModel model = (DefaultTableModel) attendTableL.getModel();
-        AttendServ.recordLogin(user, model);
-        
-        loadAttendanceTable();
-    }//GEN-LAST:event_logINActionPerformed
-
-    private void logOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutActionPerformed
-        // TODO add your handling code here:
-        User user = Session.getCurrentUser();
-        if (user == null) {
-            JOptionPane.showMessageDialog(this, "No active user session");
-            return;
-        }
-
-        DefaultTableModel model = (DefaultTableModel) attendTableL.getModel();
-        AttendServ.recordLogout(user, model);
-        
-        loadAttendanceTable();
-    }//GEN-LAST:event_logOutActionPerformed
-
     private void MonthPickerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MonthPickerActionPerformed
         // TODO add your handling code here:
         
@@ -255,15 +130,9 @@ public class Attendance extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> MonthPicker;
     private javax.swing.JTable attendTableL;
-    private javax.swing.JTextField empNameA;
-    private javax.swing.JTextField empNumA;
     private group22.UI.GradientPanel gradientPanel1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton logIN;
-    private javax.swing.JButton logOut;
     // End of variables declaration//GEN-END:variables
 }

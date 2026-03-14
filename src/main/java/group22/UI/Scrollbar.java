@@ -31,7 +31,7 @@ public class Scrollbar {
         scroll.setUI(new BasicScrollBarUI() {
             
             //Customize the scrollbar
-            private final Color THUMB = new Color(120,170,200);
+            private final Color THUMB = new Color(84,184,114);
             private final Color TRACK = new Color(240,240,240,80);
             
             private final Dimension ZERO = new Dimension(0,0);

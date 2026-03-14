@@ -37,6 +37,10 @@ public class Data {
             new Object[]{"Employee Number", "Employee", "Date", "Time In", "Time Out"}, 0
     );
     
+    private static final DefaultTableModel myAttendModel = new DefaultTableModel(
+        new Object[]{"Employee Number", "Employee", "Date", "Time In", "Time Out"}, 0
+    );
+    
     private static final DefaultTableModel requestModel = new DefaultTableModel(
             new Object[]{"Employee Number", "TO", "Category", "Description"}, 0
     );
@@ -94,18 +98,41 @@ public class Data {
         attendModel.setRowCount(0); // clear model
 
         for (AttendData a : attendances) {
+            
             attendModel.addRow(new Object[]{
                     a.getEmpNumber(),
-                    a.getLastName() + ", " + a.getFirstName(), // combine for Employee column
+                    a.getEmpName(),
                     a.getDate(),
                     a.getLogIn(),
                     a.getLogOut()
             });
         }
     }
+    
+    public static void loadMyAttendance(String empNumber) {
+
+        myAttendModel.setRowCount(0);
+
+        for (AttendData a : attendances) {
+            if (a.getEmpNumber().equalsIgnoreCase(empNumber)) {
+
+                myAttendModel.addRow(new Object[]{
+                        a.getEmpNumber(),
+                        a.getEmpName(),
+                        a.getDate(),
+                        a.getLogIn(),
+                        a.getLogOut()
+                });
+            }
+        }
+    }
 
     public static List<AttendData> getAttendances() {
         return attendances;
+    }
+    
+    public static DefaultTableModel getMyAttendModel() {
+        return myAttendModel;
     }
     
     // -------------------- REQUEST METHODS --------------------

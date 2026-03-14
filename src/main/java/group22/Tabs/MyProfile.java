@@ -24,7 +24,7 @@ public class MyProfile extends javax.swing.JPanel {
         if (user != null) {
             empName.setText(user.getFirstName() + " " + user.getLastName());
             position.setText(user.getPosition());
-            email.setText(user.getFirstName() + user.getLastName() + "@motor.ph");
+            email.setText(user.getFirstName().trim().replace(" ", "") + user.getLastName().trim() + "@motor.ph");
         }
     }
 

@@ -10,31 +10,26 @@ package group22.Model;
  */
 public class AttendData {
     protected String empNumber;
-    protected String lastName;
-    protected String firstName;
+    protected String empName;
     protected String date;
     protected String logIn;
     protected String logOut;
 
     public AttendData(String empNumber,
-                           String lastName,
-                           String firstName,
+                           String empName,
                            String date,
                            String logIn,
                            String logOut) {
         this.empNumber = empNumber;
-        this.lastName = lastName;
-        this.firstName = firstName;
+        this.empName = empName;
         this.date = date;
         this.logIn = logIn;
         this.logOut = logOut;
     }
 
     public String getEmpNumber() { return empNumber; }
-
-    public String getLastName() { return lastName; }
     
-    public String getFirstName() { return firstName; }
+    public String getEmpName() { return empName; }
     
     public String getDate() { return date;}
 

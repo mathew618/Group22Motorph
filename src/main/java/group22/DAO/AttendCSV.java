@@ -35,8 +35,7 @@ public class AttendCSV {
 
                 AttendData emp = new AttendData(
                         d[0].trim(),                  // Employee Number
-                        "",                            // Last Name (not used in table)
-                        d[1].trim(),                   // First Name / Full Name
+                        d[1].trim(),                   // Employee Name
                         d[2].trim(),                   // Date
                         d[3].trim(),                   // Time-In
                         d[4].trim()                    // Time-Out

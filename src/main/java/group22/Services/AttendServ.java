@@ -13,26 +13,23 @@ import javax.swing.table.DefaultTableModel;
 
 public class AttendServ {
 
-    private static final DateTimeFormatter DATE_FORMAT =
-            DateTimeFormatter.ofPattern("MM-dd-yyyy");
+    private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+    private static final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("HH:mm:ss");
 
-    private static final DateTimeFormatter TIME_FORMAT =
-            DateTimeFormatter.ofPattern("HH:mm:ss");
+    public static void recordLogin(User user, DefaultTableModel model) {
 
-    public static void recordLogin(User user, DefaultTableModel model){
+        String empNo = user.getUsername();
+        String fullName = user.getLastName() + " " + user.getFirstName();
+        String date = LocalDate.now().format(DATE_FORMAT);
+        String time = LocalTime.now().format(TIME_FORMAT);
 
-    String empNo = user.getUsername();
-    String fullName = user.getFirstName() + " " + user.getLastName();
-    String date = LocalDate.now().format(DateTimeFormatter.ofPattern("MM-dd-yyyy"));
-    String time = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
-
-    // Check if already logged in today
-    for(int i = 0; i < model.getRowCount(); i++){
-        if(model.getValueAt(i, 0).toString().equals(empNo) &&
-           model.getValueAt(i, 2).toString().equals(date)){  // column 2 = Date
-            JOptionPane.showMessageDialog(null,"Already logged in today");
-            return;
-        }
+        // Check if already logged in today
+        for (int i = 0; i < model.getRowCount(); i++) {
+            if (model.getValueAt(i, 0).toString().equals(empNo)
+                    && model.getValueAt(i, 2).toString().equals(date)) {  // column 2 = Date
+                JOptionPane.showMessageDialog(null, "Already logged in today");
+                return;
+            }
         }
 
         model.addRow(new Object[]{
@@ -40,29 +37,29 @@ public class AttendServ {
             fullName,
             date,
             time,
-            ""    // Time-Out empty
+            "" // Time-Out empty
         });
 
-        JOptionPane.showMessageDialog(null,"Login recorded");
+        JOptionPane.showMessageDialog(null, "Login recorded");
     }
 
-    public static void recordLogout(User user, DefaultTableModel model){
+    public static void recordLogout(User user, DefaultTableModel model) {
 
-    String empNo = user.getUsername();
-    String date = LocalDate.now().format(DateTimeFormatter.ofPattern("MM-dd-yyyy"));
-    String time = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+        String empNo = user.getUsername();
+        String date = LocalDate.now().format(DATE_FORMAT);
+        String time = LocalTime.now().format(TIME_FORMAT);
 
-    for(int i = 0; i < model.getRowCount(); i++){
-        if(model.getValueAt(i, 0).toString().equals(empNo) &&
-           model.getValueAt(i, 2).toString().equals(date) &&
-           model.getValueAt(i, 4).toString().isEmpty()){   // column 4 = Time-Out
+        for (int i = 0; i < model.getRowCount(); i++) {
+            if (model.getValueAt(i, 0).toString().equals(empNo)
+                    && model.getValueAt(i, 2).toString().equals(date)
+                    && model.getValueAt(i, 4).toString().isEmpty()) {   // column 4 = Time-Out
 
-            model.setValueAt(time, i, 4);   // set Time-Out
-            JOptionPane.showMessageDialog(null,"Logout recorded");
-            return;
+                model.setValueAt(time, i, 4);   // set Time-Out
+                JOptionPane.showMessageDialog(null, "Logout recorded");
+                return;
+            }
         }
-    }
 
-        JOptionPane.showMessageDialog(null,"No login record found");
+        JOptionPane.showMessageDialog(null, "No login record found");
     }
 }
