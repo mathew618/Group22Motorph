@@ -21,14 +21,16 @@ public class MotorPH {
     public static final String ATTEND_TEMP_CSV_NAME = "temp_attend.csv";
     
     public static final String REQUESTS_CSV_NAME = "SupportRequests.csv";
+    public static final String LEAVES_CSV_NAME = "Leaves.csv";
     
     public static void main(String[] args) {
         TempCSV.duplicateCSV(CSV_NAME, TEMP_CSV_NAME);
-        TempCSV.duplicateCSV(CSV_NAME, TEMP_CSV_NAME);
+        TempCSV.duplicateCSV(ATTENDANCE_CSV_NAME, ATTEND_TEMP_CSV_NAME);
         
         Data.loadEmployees(TEMP_CSV_NAME);
-        Data.loadAttendance(ATTENDANCE_CSV_NAME);
-        Data.loadRequest(REQUESTS_CSV_NAME);
+        Data.loadAttendance(ATTEND_TEMP_CSV_NAME);
+        Data.loadSupportRequest(REQUESTS_CSV_NAME);
+        Data.loadLeaveRequest(LEAVES_CSV_NAME);
         
         new Login().setVisible(true);
     }

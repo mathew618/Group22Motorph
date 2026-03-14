@@ -49,7 +49,10 @@ public class Main extends javax.swing.JFrame {
                 nav.addLabel("ADMIN");
                 nav.addBtn("EMPLOYEES", "employees");
                 nav.addBtn("ATTENDANCE", "attendance");
+                nav.addBtn("LEAVES", "leaves");
                 nav.addBtn("SALARY", "salary");
+                
+                nav.addLabel("PAY");
                 nav.addBtn("PAYSLIPS", "payslip");
                 nav.addBtn("PAID", "paid");
             }
@@ -61,7 +64,6 @@ public class Main extends javax.swing.JFrame {
             }
 
             nav.addLabel("OTHERS");
-            nav.addBtn("LEAVE REQUEST", "leaves");
             nav.addBtn("MY PAYSLIPS", "mypayslips");
             nav.addBtn("SETTINGS", "mysettings");
 
@@ -108,10 +110,10 @@ public class Main extends javax.swing.JFrame {
         myProfile1 = new group22.Tabs.MyProfile();
         mySettings1 = new group22.Tabs.Settings();
         myLeaves1 = new group22.Tabs.MyLeaves();
-        leaves1 = new group22.Tabs.Leaves();
         myPayslips1 = new group22.Tabs.MyPayslips();
         supportRequests1 = new group22.Tabs.SupportRequests();
         myAttendance1 = new group22.Tabs.MyAttendance();
+        leaves2 = new group22.Tabs.Leaves();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(810, 460));
@@ -263,10 +265,10 @@ public class Main extends javax.swing.JFrame {
         Tabs.add(myProfile1, "myprofile");
         Tabs.add(mySettings1, "mysettings");
         Tabs.add(myLeaves1, "myleaves");
-        Tabs.add(leaves1, "leaves");
         Tabs.add(myPayslips1, "mypayslips");
         Tabs.add(supportRequests1, "supportreq");
         Tabs.add(myAttendance1, "myattendance");
+        Tabs.add(leaves2, "leaves");
 
         Scroll.setViewportView(Tabs);
 
@@ -380,7 +382,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private group22.Tabs.Leaves leaves1;
+    private group22.Tabs.Leaves leaves2;
     private group22.Tabs.MyAttendance myAttendance1;
     private group22.Tabs.MyLeaves myLeaves1;
     private group22.Tabs.MyPayslips myPayslips1;

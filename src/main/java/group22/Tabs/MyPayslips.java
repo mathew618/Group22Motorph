@@ -4,6 +4,10 @@
  */
 package group22.Tabs;
 
+import group22.Services.SearchFilter;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+
 /**
  *
  * @author HP
@@ -15,6 +19,13 @@ public class MyPayslips extends javax.swing.JPanel {
      */
     public MyPayslips() {
         initComponents();
+        
+        // Enable sorting
+        TableRowSorter<TableModel> sorter = new TableRowSorter<>(myPayTable.getModel());
+        myPayTable.setRowSorter(sorter);
+
+        // Search Employee function
+        SearchFilter.search(searchF, sorter);
     }
 
     /**
@@ -30,7 +41,7 @@ public class MyPayslips extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         searchF = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        empTableL = new javax.swing.JTable();
+        myPayTable = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
 
@@ -49,7 +60,7 @@ public class MyPayslips extends javax.swing.JPanel {
             }
         });
 
-        empTableL.setModel(new javax.swing.table.DefaultTableModel(
+        myPayTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
@@ -68,7 +79,7 @@ public class MyPayslips extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(empTableL);
+        jScrollPane1.setViewportView(myPayTable);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 139));
 
@@ -106,8 +117,10 @@ public class MyPayslips extends javax.swing.JPanel {
                     .addGroup(gradientPanel1Layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addGroup(gradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(searchF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE)
+                            .addGroup(gradientPanel1Layout.createSequentialGroup()
+                                .addComponent(searchF)
+                                .addGap(350, 350, 350)))))
                 .addGap(26, 26, 26))
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -136,11 +149,6 @@ public class MyPayslips extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void searchFFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchFFocusGained
-        // TODO add your handling code here:
-        searchF.setText("");
-    }//GEN-LAST:event_searchFFocusGained
-
     private void searchFFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchFFocusLost
         // TODO add your handling code here:
         if (searchF.getText().isEmpty()) {
@@ -148,14 +156,19 @@ public class MyPayslips extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_searchFFocusLost
 
+    private void searchFFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchFFocusGained
+        // TODO add your handling code here:
+        searchF.setText("");
+    }//GEN-LAST:event_searchFFocusGained
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable empTableL;
     private group22.UI.GradientPanel gradientPanel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable myPayTable;
     private javax.swing.JTextField searchF;
     // End of variables declaration//GEN-END:variables
 }

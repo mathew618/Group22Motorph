@@ -6,9 +6,11 @@ package group22.Services;
 
 import group22.DAO.AttendCSV;
 import group22.DAO.EmpCSV;
+import group22.DAO.LeavesCSV;
 import group22.DAO.RequestCSV;
 import group22.Model.AttendData;
 import group22.Model.Employee;
+import group22.Model.LeaveRequest;
 import group22.Model.Request;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
@@ -44,11 +46,20 @@ public class Data {
     private static final DefaultTableModel requestModel = new DefaultTableModel(
             new Object[]{"Employee Number", "TO", "Category", "Description"}, 0
     );
+    
+    private static final DefaultTableModel leavesModel = new DefaultTableModel(
+            new Object[]{"Employee Number", "Leave Type", "Start Date", "End Date", "Total Days", "Status", "Reason"}, 0
+    );
+    
+    private static final DefaultTableModel myLeavesModel = new DefaultTableModel(
+            new Object[]{"Employee Number", "Leave Type", "Start Date", "End Date", "Total Days", "Status", "Reason"}, 0
+    );
 
     // Lists
     private static List<Employee> employees;
     private static List<AttendData> attendances;
-    private static List<Request> requests;
+    private static List<Request> supportRequest;
+    private static List<LeaveRequest> leaveRequest;
 
     // -------------------- EMPLOYEE METHODS --------------------
     public static void loadEmployees(String filePath) {
@@ -135,12 +146,12 @@ public class Data {
         return myAttendModel;
     }
     
-    // -------------------- REQUEST METHODS --------------------
-    public static void loadRequest(String filePath) {
-        requests = RequestCSV.read(filePath); // read attendance CSV
-        requestModel.setRowCount(0); // clear model
+    // -------------------- SUPPORT REQUEST METHODS --------------------
+    public static void loadSupportRequest(String filePath) {
+        supportRequest = RequestCSV.read(filePath);
+        requestModel.setRowCount(0);
 
-        for (Request r : requests) {
+        for (Request r : supportRequest) {
             requestModel.addRow(new Object[]{
                     r.getUsername(),
                     r.getRole(),
@@ -150,10 +161,56 @@ public class Data {
         }
     }
     
-    public static List<Request> getRequests() {
-        return requests;
+    public static List<Request> getSupportRequests() {
+        return supportRequest;
     }
+    
+    // -------------------- LEAVES METHODS --------------------
+    public static void loadLeaveRequest(String filePath) {
+        leaveRequest = LeavesCSV.read(filePath);
+        leavesModel.setRowCount(0);
 
+        for (LeaveRequest l : leaveRequest) {
+            leavesModel.addRow(new Object[]{
+                    l.getUsername(),
+                    l.getType(),
+                    l.getStart(),
+                    l.getEnd(),
+                    l.getTotal(),
+                    l.getStatus(),
+                    l.getReason()
+            });
+        }
+    }
+    
+    public static void loadMyLeaves(String empNumber) {
+
+        myLeavesModel.setRowCount(0);
+
+        for (LeaveRequest l : leaveRequest) {
+            if (l.getUsername().equalsIgnoreCase(empNumber)) {
+
+                myLeavesModel.addRow(new Object[]{
+                        l.getUsername(),
+                        l.getType(),
+                        l.getStart(),
+                        l.getEnd(),
+                        l.getTotal(),
+                        l.getStatus(),
+                        l.getReason()
+                });
+            }
+        }
+    }
+    
+    public static List<LeaveRequest> getLeaveRequests() {
+        return leaveRequest;
+    }
+    
+    public static DefaultTableModel getMyLeavesModel() {
+        return myLeavesModel;
+    }
+    
     // -------------------- TABLE MODELS GETTERS --------------------
     public static DefaultTableModel getPayslipModel() {
         return payslipModel;
@@ -171,8 +228,12 @@ public class Data {
         return attendModel;
     }
 
-    public static DefaultTableModel getRequestModel() {
+    public static DefaultTableModel getSupportRequestModel() {
         return requestModel;
+    }
+    
+    public static DefaultTableModel getLeaveRequestModel() {
+        return leavesModel;
     }
 
     // -------------------- TEMPORARY HELPER --------------------

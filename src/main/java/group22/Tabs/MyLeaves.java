@@ -4,6 +4,11 @@
  */
 package group22.Tabs;
 
+import group22.Model.User;
+import group22.Services.Data;
+import group22.Services.Session;
+import group22.UI.LeaveReq;
+
 /**
  *
  * @author HP
@@ -15,7 +20,15 @@ public class MyLeaves extends javax.swing.JPanel {
      */
     public MyLeaves() {
         initComponents();
+        
+        User user = Session.getCurrentUser();
+        
+        Data.loadMyLeaves(user.getUsername());
+        
+        leaveTable.setModel(Data.getMyLeavesModel());
     }
+    
+    private LeaveReq leaveReq;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -30,11 +43,11 @@ public class MyLeaves extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         gradientPanel1 = new group22.UI.GradientPanel();
         gradientPanel2 = new group22.UI.GradientPanel();
-        searchF = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        empTableL = new javax.swing.JTable();
+        leaveTable = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
+        requestBtn = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 139));
 
@@ -66,17 +79,7 @@ public class MyLeaves extends javax.swing.JPanel {
         gradientPanel2.setColor1(new java.awt.Color(228, 255, 255));
         gradientPanel2.setColor2(new java.awt.Color(102, 204, 255));
 
-        searchF.setText("Search Employee Name");
-        searchF.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                searchFFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                searchFFocusLost(evt);
-            }
-        });
-
-        empTableL.setModel(new javax.swing.table.DefaultTableModel(
+        leaveTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -95,7 +98,7 @@ public class MyLeaves extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(empTableL);
+        jScrollPane1.setViewportView(leaveTable);
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 139));
 
@@ -121,27 +124,38 @@ public class MyLeaves extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        requestBtn.setBackground(new java.awt.Color(255, 204, 204));
+        requestBtn.setText("Request Leave");
+        requestBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                requestBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout gradientPanel2Layout = new javax.swing.GroupLayout(gradientPanel2);
         gradientPanel2.setLayout(gradientPanel2Layout);
         gradientPanel2Layout.setHorizontalGroup(
             gradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(gradientPanel2Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(gradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(searchF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(28, Short.MAX_VALUE))
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, gradientPanel2Layout.createSequentialGroup()
+                .addGroup(gradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(gradientPanel2Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(requestBtn))
+                    .addGroup(gradientPanel2Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE)))
+                .addGap(28, 28, 28))
         );
         gradientPanel2Layout.setVerticalGroup(
             gradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(gradientPanel2Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(searchF, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(requestBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
-                .addGap(56, 56, 56))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
+                .addGap(32, 32, 32))
         );
 
         javax.swing.GroupLayout gradientPanel1Layout = new javax.swing.GroupLayout(gradientPanel1);
@@ -167,21 +181,19 @@ public class MyLeaves extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void searchFFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchFFocusGained
+    private void requestBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestBtnActionPerformed
         // TODO add your handling code here:
-        searchF.setText("");
-    }//GEN-LAST:event_searchFFocusGained
-
-    private void searchFFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchFFocusLost
-        // TODO add your handling code here:
-        if (searchF.getText().isEmpty()) {
-            searchF.setText("Search Employee Name");
+        if (leaveReq == null || !leaveReq.isDisplayable()) {
+            leaveReq = new LeaveReq();
         }
-    }//GEN-LAST:event_searchFFocusLost
+
+        leaveReq.setVisible(true);
+        leaveReq.toFront();
+        leaveReq.requestFocus();
+    }//GEN-LAST:event_requestBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable empTableL;
     private group22.UI.GradientPanel gradientPanel1;
     private group22.UI.GradientPanel gradientPanel2;
     private javax.swing.JLabel jLabel6;
@@ -189,6 +201,7 @@ public class MyLeaves extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField searchF;
+    private javax.swing.JTable leaveTable;
+    private javax.swing.JButton requestBtn;
     // End of variables declaration//GEN-END:variables
 }

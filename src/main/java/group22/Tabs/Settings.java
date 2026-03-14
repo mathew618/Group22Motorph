@@ -18,6 +18,8 @@ public class Settings extends javax.swing.JPanel {
     public Settings() {
         initComponents();
     }
+    
+    private ContactSupport support;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -280,7 +282,13 @@ public class Settings extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        new ContactSupport().setVisible(true);
+        if (support == null || !support.isDisplayable()) {
+            support = new ContactSupport();
+        }
+
+        support.setVisible(true);
+        support.toFront();
+        support.requestFocus();
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

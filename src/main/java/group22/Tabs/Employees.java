@@ -8,12 +8,10 @@ import group22.UI.EmployeeDetails;
 import group22.Services.Data;
 import group22.DAO.EmpCSV;
 import group22.Model.Employee;
+import group22.Services.SearchFilter;
 import group22.UI.AddEmployee;
 import static group22.motorph.MotorPH.TEMP_CSV_NAME;
 import javax.swing.JOptionPane;
-import javax.swing.RowFilter;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -29,39 +27,16 @@ public class Employees extends javax.swing.JPanel {
     public Employees() {
         initComponents();
         empTableL.setModel(Data.getEmpModel());
-        
+
         // Enable sorting
         TableRowSorter<TableModel> sorter = new TableRowSorter<>(empTableL.getModel());
         empTableL.setRowSorter(sorter);
-        
+
         // Search Employee function
-        searchF.getDocument().addDocumentListener(new DocumentListener() {
-            private void filterTable() {
-                String searchText = searchF.getText().toLowerCase();
-
-                if (searchF.getText().equals("Search Employee Name")) {
-                    sorter.setRowFilter(null);
-                } else {
-                    sorter.setRowFilter(RowFilter.regexFilter("(?i)" + searchText));
-                }
-            }
-
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                filterTable();
-            }
-
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                filterTable();
-            }
-
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                filterTable();
-            }
-        });
+        SearchFilter.search(searchF, sorter);
     }
+
+    private static AddEmployee empAdd;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -202,50 +177,50 @@ public class Employees extends javax.swing.JPanel {
     private void viewEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewEmpActionPerformed
         // TODO add your handling code here:
         int selectedRow = empTableL.getSelectedRow();
-        
+
         if (selectedRow == -1) {
             JOptionPane.showMessageDialog(this, "Please select an employee first.");
             return;
         }
-        
+
         int modelRow = empTableL.convertRowIndexToModel(selectedRow);
-        
+
         Employee emp = Data.getEmployees().get(modelRow);
-        
+
         EmployeeDetails detailsFrame = new EmployeeDetails(emp);
         detailsFrame.setVisible(true);
-         
+
     }//GEN-LAST:event_viewEmpActionPerformed
-    
-    private static AddEmployee n;
-    
+
     private void addEmpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addEmpBtnActionPerformed
         // TODO add your handling code here:
-        
-        if (n == null || !n.isDisplayable()) {
-            n = new AddEmployee();
-            n.setVisible(true);
+        if (empAdd == null || !empAdd.isDisplayable()) {
+            empAdd = new AddEmployee();
         }
+
+        empAdd.setVisible(true);
+        empAdd.toFront();
+        empAdd.requestFocus();
     }//GEN-LAST:event_addEmpBtnActionPerformed
 
     private void removeEmpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeEmpBtnActionPerformed
         // TODO add your handling code here:
         int selectedRow = empTableL.getSelectedRow();
-        
+
         if (selectedRow == -1) {
             JOptionPane.showMessageDialog(this, "Please select an employee to remove.");
             return;
         }
-        
+
         int modelRow = empTableL.convertRowIndexToModel(selectedRow);
-        
+
         int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to remove this employee?");
         if (confirm != JOptionPane.YES_OPTION) {
             return;
         }
-        
+
         EmpCSV.removeEmployee(TEMP_CSV_NAME, modelRow);
-        
+
         Data.loadEmployees(TEMP_CSV_NAME);
         JOptionPane.showMessageDialog(this, "Employee removed.");
     }//GEN-LAST:event_removeEmpBtnActionPerformed

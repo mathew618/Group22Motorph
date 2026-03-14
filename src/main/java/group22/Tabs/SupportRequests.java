@@ -18,7 +18,7 @@ public class SupportRequests extends javax.swing.JPanel {
     public SupportRequests() {
         initComponents();
         
-        supportTable.setModel(Data.getRequestModel());
+        supportTable.setModel(Data.getSupportRequestModel());
     }
 
     /**

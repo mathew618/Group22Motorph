@@ -234,7 +234,7 @@ public class ContactSupport extends javax.swing.JFrame {
                 
         );
         
-        Data.loadRequest(REQUESTS_CSV_NAME);
+        Data.loadSupportRequest(REQUESTS_CSV_NAME);
         
         dispose();
     }//GEN-LAST:event_submitBtnActionPerformed
