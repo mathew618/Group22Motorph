@@ -2,3 +2,4 @@ USERNAME,TYPE,START DATE,END DATE,TOTAL,STATUS,REASON
 1,Sick Leave ,"MMM d, y","MMM d, y",WIP,approved,I might die
 1,Sick Leave ,03-19-2026,03-26-2026,WIP,approved,test
 1,Sick Leave ,06-10-2026,10-31-2026,144,approved,Test
+1,Sick Leave ,03-17-2026,03-31-2026,15,pending,Validate Test

@@ -23,6 +23,13 @@ public class LeaveServ {
         return (diff / (1000 * 60 * 60 * 24)) + 1;
     }
     
+    public static String check(Date start, Date end, String reason) {
+        if (start == null) return "Start date must be selected.";
+        if (end == null) return "End date must be selected.";
+        if (reason == null || reason.trim().isEmpty()) return "Reason cannot be empty.";
+        return null;
+    }
+    
     public static void startDate(JDateChooser start) {
         Date today = new Date();
         

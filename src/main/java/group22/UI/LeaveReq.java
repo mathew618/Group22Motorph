@@ -4,6 +4,7 @@
  */
 package group22.UI;
 
+import com.toedter.calendar.JTextFieldDateEditor;
 import group22.DAO.LeavesCSV;
 import group22.Model.User;
 import group22.Services.Data;
@@ -12,6 +13,7 @@ import group22.Services.Session;
 import static group22.motorph.MotorPH.LEAVES_CSV_NAME;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -28,6 +30,12 @@ public class LeaveReq extends javax.swing.JFrame {
         initComponents();
         
         LeaveServ.startDate(startDate);
+        
+        JTextFieldDateEditor startField = (JTextFieldDateEditor) startDate.getDateEditor();
+        startField.setEditable(false);
+        
+        JTextFieldDateEditor endField = (JTextFieldDateEditor) endDate.getDateEditor();
+        endField.setEditable(false);
     }
     
     private void calculateTotalDays() {
@@ -275,6 +283,12 @@ public class LeaveReq extends javax.swing.JFrame {
         
         SimpleDateFormat df = new SimpleDateFormat("MM-dd-yyyy");
         String status = "pending";
+        
+        String errorMessage = LeaveServ.check(startDate.getDate(), endDate.getDate(), reason.getText());
+        if (errorMessage != null) {
+            JOptionPane.showMessageDialog(this, errorMessage);
+            return;
+        }
         
         LeavesCSV.addRequests(LEAVES_CSV_NAME,
                 user.getUsername(),
